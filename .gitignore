@@ -1,0 +1,15 @@
+13 lines (11 sloc)  121 Bytes
+  
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
+.config_secret/
+.config/
+.static_root/
+
+.DS_Store

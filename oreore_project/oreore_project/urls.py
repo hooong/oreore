@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import index.views
+import prescription_read.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index.views.index),
+    path('', index.views.index, name='index'),
     path('accounts/', include('accounts.urls')),
+    path('find/', prescription_read.views.find_medicine),
 ]

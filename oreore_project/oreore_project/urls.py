@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index.views.index, name='index'),
     path('accounts/', include('accounts.urls')),
+    path('prescription/', include('prescription_manage.urls')),
     path('find/', prescription_read.views.find_medicine),
 ]

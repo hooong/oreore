@@ -43,7 +43,13 @@
 <div class="mainContainer">
 	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
 	<div class="main">
-		검색넣을페이지
+		모든 처방전 <br><br>
+		{% for prescription in prescriptions %}
+			{{ prescription.prescriptionName }} <br>
+			{{ prescription.createdDate }}	<hr>
+        {% endfor %}
+        
+        <button><a href="{% url 'add_prescription' %}">추가</a></button>
 	</div>
 	<div id="tail">Copyrightⓒ2019 by 오래오래 | Contact Us </div>
 </div>

@@ -17,6 +17,6 @@ def add_prescription(request):
         add_pre.prescriptionName = request.POST['name']
         add_pre.ownUser = request.user
         add_pre.save()
-        return redirect('all_prescription')
+        return redirect('/disease/add/' + str(add_pre.id) + '?q=J')
     else:
         return render(request, 'add_prescription.html')

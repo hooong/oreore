@@ -1,0 +1,13 @@
+{% if user.is_authenticated %}
+<script type="text/javascript">
+    alert('잘못된 접근입니다. \n 이미 로그인이 되어있습니다.')
+    window.location.href = '/';
+</script>
+{% else %}
+<h1>로그인</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="로그인" />
+</form>
+{% endif %}

@@ -2,9 +2,18 @@ from django.shortcuts import render,redirect
 from urllib.request import urlopen
 from django.utils.http import urlencode
 from django.utils.six.moves.urllib.parse import quote_plus
-import requests, json
+import requests, json, os, io
 import xml.etree.ElementTree as ET
-import urllib.request
+from oreore_project.settings import BASE_DIR
+
+# read_prescription
+def read_pres():
+    pic = os.path.join(BASE_DIR,'pres_images/4.jpeg')
+
+    recipt = detect_text(pic)
+
+    return
+
 
 # 로컬이미지
 def detect_text(path):
@@ -19,22 +28,20 @@ def detect_text(path):
 
     response = client.text_detection(image=image)
     texts = response.text_annotations
-    print('Texts:')
+    
+    # OCR로 읽은 전체 문자열
+    pres_text = texts[0].description
+    print(pres_text)
 
-    for text in texts:
-        print('\n"{}"'.format(text.description))
+    return pres_text
 
-        vertices = (['({},{})'.format(vertex.x, vertex.y)
-                    for vertex in text.bounding_poly.vertices])
-
-        print('bounds: {}'.format(','.join(vertices)))
 
 # 원격이미지
 def detect_text_uri(uri):
     """Detects text in the file located in Google Cloud Storage or on the Web.
     """
     from google.cloud import vision
-    client = vision.ImageAnnotatorClient()
+    client = vision.ImageAnnotatorClient() 
     image = vision.types.Image()
     image.source.image_uri = uri
 
@@ -67,6 +74,8 @@ def find_medicine(request):
     r = request.text
     print(r)
     root = ET.fromstring(r)
+
+    read_pres()
     
 
     # print(request.text)

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 계정관리
     'accounts',
+    # 처방전관리
+    'prescription_manage',
     # 질병관리         
     'disease_manage',
     # 약품관리

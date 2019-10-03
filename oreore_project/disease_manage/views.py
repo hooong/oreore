@@ -2,11 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 import requests
 import json ,re
 from bs4 import BeautifulSoup
+from .models import *
+from prescription_manage.models import *
 
 def add_disease(request, pre_id):
     sicknm = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
     pattern = re.compile('[가-힣]')
     m = pattern.match(sicknm)
+    sickcds = []
+    sicknms = []
 
     if sicknm: # q가 있으면
         if m:
@@ -25,24 +29,24 @@ def add_disease(request, pre_id):
             # print(jsonString)
         sicknm = bs.find_all('sicknm')
         sickcd = bs.find_all('sickcd')
-        sickcds = []
-        sicknms = []
+
 
         if sicknm == []:
             sickcds.append("검색 내용 없음")
             sicknms.append("검색 내용 없음")
         else:
-            
             for el in sicknm:
-                sicknms.append(el.text)
+                # 'J' 검색시 // 이게 str패턴에 맞지않아 문제발생 따라서 미리 //를 제거해주었음.
+                el = re.sub('//', '', el.text)
+                sicknms.append(el)
             for el in sickcd:
                 sickcds.append(el.text)   
             # print(els)
             
             
     else:
-        sickcd ="검색 내용 없음"
-        sicknm = "검색 내용 없음"
+        sickcds.append("검색 내용 없음")
+        sicknms.append("검색 내용 없음")
 
     edicode = "642102570"
     url2 = 'http://apis.data.go.kr/1470000/MdcinGrnIdntfcInfoService/getMdcinGrnIdntfcInfoList'
@@ -64,6 +68,11 @@ def add_disease(request, pre_id):
         'pre_id':pre_id
     })
 
-def add_disease_to_prescription(request,pre_id):
+def add_disease_to_prescription(request, pre_id, code, name):
+    disease = Disease()
+    disease.diesName = name
+    disease.kcdCode = code
+    disease.linkPrescription = Prescription.objects.get(id=pre_id)
+    disease.save()
 
-    return redirect('/disease/add/' + str(pre_id) + '?q=K')
+    return redirect('/disease/add/' + str(pre_id) + '?q=')

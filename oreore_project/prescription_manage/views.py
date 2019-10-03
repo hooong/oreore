@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
+from disease_manage.models import *
 
 def all_prescription(request):
     # 처방전 (로그인 한 사람만 들어올수있는페이지)
@@ -20,3 +21,14 @@ def add_prescription(request):
         return redirect('/disease/add/' + str(add_pre.id) + '?q=')
     else:
         return render(request, 'add_prescription.html')
+
+def detail_prescription(request, pre_id):
+    prescription = Prescription.objects.get(id=pre_id)
+    disease = Disease.objects.filter(linkPrescription=prescription)
+
+    context = {
+        'pre':prescription,
+        'dis':disease,
+    }
+
+    return render(request, 'detail_prescription.html', context)

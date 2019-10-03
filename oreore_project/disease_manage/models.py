@@ -7,7 +7,7 @@ class Disease(models.Model):
     diesName = models.CharField(max_length=255)
     rgstrDate = models.DateTimeField(auto_now_add=True)
 
-    linkPrescription = models.ForeignKey(Prescription, on_delete=models.CASCADE)
+    linkPrescription = models.ForeignKey(Prescription, on_delete=models.CASCADE, related_name='prescription_disease')
 
     def __str__(self):
         return self.diesName

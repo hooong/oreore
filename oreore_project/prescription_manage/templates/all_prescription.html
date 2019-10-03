@@ -45,7 +45,7 @@
 	<div class="main">
 		모든 처방전 <br><br>
 		{% for prescription in prescriptions %}
-			{{ prescription.prescriptionName }} <br>
+			<a href="{% url 'detail_prescription' prescription.id %}">{{ prescription.prescriptionName }}</a> <br>
 			{{ prescription.createdDate }}	<hr>
         {% endfor %}
         

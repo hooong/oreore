@@ -1,0 +1,7 @@
+{{pre.prescriptionName}} <br>
+{% for disease in dis %}
+    {{disease.kcdCode}} <br>
+    {{disease.diesName}}
+{% endfor %}
+<hr>
+<a href="{% url 'all_prescription' %}"><button>back</button></a>

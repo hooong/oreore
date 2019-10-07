@@ -1,0 +1,7 @@
+<form action="{% url 'confirm_code' pre_id %}" method='POST'>
+    {% csrf_token %}
+    {% for is in iscode %}
+        <input type="text" placeholder="{{is}}"><br>
+    {% endfor %}
+    <button><input type="submit">확인</button>
+</form>

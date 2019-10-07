@@ -48,22 +48,9 @@ def add_disease(request, pre_id):
         sickcds.append("검색 내용 없음")
         sicknms.append("검색 내용 없음")
 
-    edicode = "642102570"
-    url2 = 'http://apis.data.go.kr/1470000/MdcinGrnIdntfcInfoService/getMdcinGrnIdntfcInfoList'
-    queryParams = '?serviceKey=yZVErZO2RRQ0JjcdXjdNPmimESxORrD6c1Bq8Q%2BvRp1wPMKMlZ6WQOFA6wxYGMrwO9h70dTLh9Q98kNQmvOe6A%3D%3D&edi_code=' + edicode
-    response2 = requests.get(url2+queryParams).text
-    bs2 = BeautifulSoup(response2, 'lxml')
-    # print(jsonString)
-    result2 = bs2.find('item_name')
-    print(result2.text)
-    res2 = result2.text
-
-    img = bs2.find('item_image')
-    img=img.text
     sick = zip(sickcds,sicknms)
     return render(request, 'add_disease.html', {
         'sick':sick,
-        'img':img,
         'res2':res2,
         'pre_id':pre_id
     })

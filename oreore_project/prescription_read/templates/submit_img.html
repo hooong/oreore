@@ -1,0 +1,5 @@
+<form method='post' action="{% url 'submit_img' pre_id%}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ pre_img_form.as_p }}
+    <button type="submit">Upload</button>
+</form>

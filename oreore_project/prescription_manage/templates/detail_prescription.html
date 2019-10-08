@@ -2,7 +2,13 @@
 <a href="/disease/add/{{pre.id}}?q="><button>질병추가하기</button></a> <br>
 {% for disease in dis %}
     {{disease.kcdCode}} <br>
-    {{disease.diesName}}
+    {{disease.diesName}} <br>
+{% endfor %}
+<hr>
+{% for medicine in medi %}
+    {{medicine.insuranceCode}} <br>
+    {{medicine.mediName}} <br>
+    <img src="{{medicine.img_url}}" alt="Not image" width="155"> <br>
 {% endfor %}
 <hr>
 <a href="{% url 'all_prescription' %}"><button>back</button></a>

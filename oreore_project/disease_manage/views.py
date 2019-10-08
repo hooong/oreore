@@ -51,7 +51,6 @@ def add_disease(request, pre_id):
     sick = zip(sickcds,sicknms)
     return render(request, 'add_disease.html', {
         'sick':sick,
-        'res2':res2,
         'pre_id':pre_id
     })
 

@@ -4,10 +4,11 @@ from django.utils.http import urlencode
 from django.utils.six.moves.urllib.parse import quote_plus
 from google.cloud import vision
 import requests, json, os, io, re
-from oreore_project.settings import BASE_DIR, ROOT_DIR
+from oreore_project.settings import BASE_DIR
 from .forms import *
 from .models import *
 from prescription_manage.models import *
+from medicine_manage.views import *
 
 # read_prescription
 def read_pres(user):
@@ -26,7 +27,6 @@ def read_pres(user):
     pre_img_model.delete()
 
     iscode = collect_code(pre_text)
-    print(iscode)
 
     return iscode
 
@@ -49,22 +49,6 @@ def detect_text(path):
 
     return pres_text
 
-
-# 원격이미지
-def detect_text_uri(uri):
-    client = vision.ImageAnnotatorClient() 
-    image = vision.types.Image()
-    image.source.image_uri = uri
-
-    response = client.text_detection(image=image)
-    texts = response.text_annotations
-
-    # OCR로 읽은 전체 문자열
-    pres_text = texts[0].description
-    print(pres_text)
-
-    return pres_text
-
 # 처방전 이미지 업로드
 def submit_img(request, pre_id):
     if request.method == 'POST':
@@ -84,36 +68,6 @@ def submit_img(request, pre_id):
         }
         return render(request, 'submit_img.html', context)
 
-# OCR 후 입력값 확인받기
-def confirm_code(request,pre_id):
-    if request.method == 'POST':
-        prescription = Prescription(id=pre_id)
-
-        # 낱알 api로 약 정보 불러와야함.
-        iscode = request.POST['iscode[]']
-        print(type(iscode))
-
-        return redirect('index')
-    else:
-        iscode = read_pres(request.user)
-        return render(request, 'confirm_code.html', {'iscode':iscode, 'pre_id':pre_id})
-
-# 낱알정보 api 
-def find_medicine(request):
-    edicode = "642102570"
-    url2 = 'http://apis.data.go.kr/1470000/MdcinGrnIdntfcInfoService/getMdcinGrnIdntfcInfoList'
-    queryParams = '?serviceKey=yZVErZO2RRQ0JjcdXjdNPmimESxORrD6c1Bq8Q%2BvRp1wPMKMlZ6WQOFA6wxYGMrwO9h70dTLh9Q98kNQmvOe6A%3D%3D&edi_code=' + edicode
-    response2 = requests.get(url2+queryParams).text
-    bs2 = BeautifulSoup(response2, 'lxml')
-    # print(jsonString)
-    result2 = bs2.find('item_name')
-    print(result2.text)
-    res2 = result2.text
-
-    img = bs2.find('item_image')
-    img=img.text
-
-    return redirect('index')
 
 # 정규식으로 보험코드 따내기
 def collect_code(text):
@@ -121,3 +75,27 @@ def collect_code(text):
     collect = m.findall(text)
 
     return collect
+
+
+# OCR 후 입력값 확인받기
+def confirm_code(request,pre_id):
+    if request.method == 'POST':
+        prescription = Prescription(id=pre_id)
+
+        # 낱알 api로 약 정보 불러와야함.
+        iscode_str = request.POST['iscode[]']
+
+        iscode_list = iscode_str.split(',')
+
+        for iscode in iscode_list:
+            find_medicine(iscode)
+        
+        for iscode in iscode_list:
+            save_medicin(iscode,pre_id)
+
+        return redirect('all_prescription')
+    else:
+        # iscode 읽어오기
+        iscode_list = read_pres(request.user)
+
+        return render(request, 'confirm_code.html', {'iscode':iscode_list, 'pre_id':pre_id})

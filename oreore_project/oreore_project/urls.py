@@ -25,5 +25,5 @@ urlpatterns = [
     path('prescription/', include('prescription_manage.urls')),
     path('disease/', include('disease_manage.urls')),
     path('prescription_read/', include('prescription_read.urls')),
-    path('find/', prescription_read.views.find_medicine),
+    path('medicine/', include('medicine_manage.urls'))
 ]

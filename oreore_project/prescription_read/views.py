@@ -7,6 +7,7 @@ import requests, json, os, io, re
 from oreore_project.settings import BASE_DIR, ROOT_DIR
 from .forms import *
 from .models import *
+from prescription_manage.models import *
 
 # read_prescription
 def read_pres(user):
@@ -64,23 +65,6 @@ def detect_text_uri(uri):
 
     return pres_text
 
-# 낱알정보 api 
-def find_medicine(request):
-    edicode = "642102570"
-    url2 = 'http://apis.data.go.kr/1470000/MdcinGrnIdntfcInfoService/getMdcinGrnIdntfcInfoList'
-    queryParams = '?serviceKey=yZVErZO2RRQ0JjcdXjdNPmimESxORrD6c1Bq8Q%2BvRp1wPMKMlZ6WQOFA6wxYGMrwO9h70dTLh9Q98kNQmvOe6A%3D%3D&edi_code=' + edicode
-    response2 = requests.get(url2+queryParams).text
-    bs2 = BeautifulSoup(response2, 'lxml')
-    # print(jsonString)
-    result2 = bs2.find('item_name')
-    print(result2.text)
-    res2 = result2.text
-
-    img = bs2.find('item_image')
-    img=img.text
-
-    return redirect('index')
-
 # 처방전 이미지 업로드
 def submit_img(request, pre_id):
     if request.method == 'POST':
@@ -103,10 +87,33 @@ def submit_img(request, pre_id):
 # OCR 후 입력값 확인받기
 def confirm_code(request,pre_id):
     if request.method == 'POST':
+        prescription = Prescription(id=pre_id)
+
+        # 낱알 api로 약 정보 불러와야함.
+        iscode = request.POST['iscode[]']
+        print(type(iscode))
+
         return redirect('index')
     else:
         iscode = read_pres(request.user)
         return render(request, 'confirm_code.html', {'iscode':iscode, 'pre_id':pre_id})
+
+# 낱알정보 api 
+def find_medicine(request):
+    edicode = "642102570"
+    url2 = 'http://apis.data.go.kr/1470000/MdcinGrnIdntfcInfoService/getMdcinGrnIdntfcInfoList'
+    queryParams = '?serviceKey=yZVErZO2RRQ0JjcdXjdNPmimESxORrD6c1Bq8Q%2BvRp1wPMKMlZ6WQOFA6wxYGMrwO9h70dTLh9Q98kNQmvOe6A%3D%3D&edi_code=' + edicode
+    response2 = requests.get(url2+queryParams).text
+    bs2 = BeautifulSoup(response2, 'lxml')
+    # print(jsonString)
+    result2 = bs2.find('item_name')
+    print(result2.text)
+    res2 = result2.text
+
+    img = bs2.find('item_image')
+    img=img.text
+
+    return redirect('index')
 
 # 정규식으로 보험코드 따내기
 def collect_code(text):

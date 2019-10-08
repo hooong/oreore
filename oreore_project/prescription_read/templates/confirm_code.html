@@ -1,7 +1,20 @@
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <form action="{% url 'confirm_code' pre_id %}" method='POST'>
     {% csrf_token %}
     {% for is in iscode %}
-        <input type="text" placeholder="{{is}}"><br>
+        <input type="text" name='iscode' value="{{is}}"><br>
     {% endfor %}
-    <button><input type="submit">확인</button>
+    <input type="hidden" name='iscode[]' id='iscode_list' value=''>
+    <input type="submit" onclick='getlist()'>
 </form>
+
+<script type="text/javascript">
+    function getlist() {
+        var list = new Array();
+        $("input[name=iscode]").each(function(index, item){
+            list.push($(item).val());
+        });
+        $("#iscode_list").val(list);
+    }
+</script>

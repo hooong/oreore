@@ -46,7 +46,7 @@
 		모든 처방전 <br><br>
 		{% for prescription in prescriptions %}
 			<a href="{% url 'detail_prescription' prescription.id %}">{{ prescription.prescriptionName }}</a> <br>
-			{{ prescription.createdDate }}	<hr>
+			{{ prescription.createdDate }}	<a href="{% url 'submit_img' prescription.id %}">약 추가하기</a><hr>
         {% endfor %}
         
         <button><a href="{% url 'add_prescription' %}">추가</a></button>

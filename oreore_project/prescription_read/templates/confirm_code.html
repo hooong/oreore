@@ -5,11 +5,16 @@
     {% for is in iscode %}
         <input type="text" name='iscode' value="{{is}}"><br>
     {% endfor %}
+    <div class='addInput'>
+
+    </div>
     <input type="hidden" name='iscode[]' id='iscode_list' value=''>
+    <button type='button' class="btnAdd">코드추가하기</button>
     <input type="submit" onclick='getlist()'>
 </form>
 
 <script type="text/javascript">
+    // iscode -> list
     function getlist() {
         var list = new Array();
         $("input[name=iscode]").each(function(index, item){
@@ -17,4 +22,30 @@
         });
         $("#iscode_list").val(list);
     }
+    // 코드추가시 input 추가 생성 
+    // function addInput() {
+    //     var div = document.createElement('div');
+    //     div.className = 'row';
+    //     div.innerHTML = '<input type="type" name="iscode" value="">\
+    //         <button type="button" onclick="removeRow()">코드삭제하기</button>';
+
+    //     document.getElementById('addInput').appendChild(div);
+    // }
+    // function removeRow(input) {
+    //     document.getElementById('addInput').removeChild(input.parentNode);
+    // }
+
+    $(document).ready (function () {                
+        $('.btnAdd').click (function () {                                        
+            $('.addInput').append (                        
+                '<input type="type" name="iscode" value="">\
+                <button type="button" class="btnRemove">코드삭제하기</button><br>'                    
+            ); // end append                            
+            $('.btnRemove').on('click', function () { 
+                $(this).prev().remove (); // remove the textbox
+                $(this).next ().remove (); // remove the <br>
+                $(this).remove (); // remove the button
+            });
+        }); // end click                                            
+    });
 </script>

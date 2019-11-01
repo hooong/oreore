@@ -1,3 +1,11 @@
+<!-- Remember to include jQuery :) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
 {{pre.prescriptionName}} <br>
 <a href="/disease/add/{{pre.id}}?q="><button>질병추가하기</button></a> <br>
 {% for disease in dis %}
@@ -7,7 +15,11 @@
 <hr>
 {% for medicine in medi %}
     {{medicine.insuranceCode}} <br>
-    {{medicine.mediName}} <br>
+    {% if medicine.mediName == ''%}
+        <a href="{% url 'mod_medicine_view' code=medicine.insuranceCode pre_id=pre.id %}" rel="modal:open">약 이름 넣기</a> <br>
+    {% else %}
+        {{medicine.mediName}} <br>
+    {% endif %}
     <img src="{{medicine.img_url}}" alt="Not image" width="155"> <br>
 {% endfor %}
 <hr>

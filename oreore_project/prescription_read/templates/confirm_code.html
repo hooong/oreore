@@ -6,7 +6,7 @@
         <input type="text" name='iscode' value="{{is}}"><br>
     {% endfor %}
     <div class='addInput'>
-
+        <!-- input tag 추가되는 부분 -->
     </div>
     <input type="hidden" name='iscode[]' id='iscode_list' value=''>
     <button type='button' class="btnAdd">코드추가하기</button>
@@ -22,19 +22,8 @@
         });
         $("#iscode_list").val(list);
     }
-    // 코드추가시 input 추가 생성 
-    // function addInput() {
-    //     var div = document.createElement('div');
-    //     div.className = 'row';
-    //     div.innerHTML = '<input type="type" name="iscode" value="">\
-    //         <button type="button" onclick="removeRow()">코드삭제하기</button>';
 
-    //     document.getElementById('addInput').appendChild(div);
-    // }
-    // function removeRow(input) {
-    //     document.getElementById('addInput').removeChild(input.parentNode);
-    // }
-
+    // 코드 input 추가 및 삭제
     $(document).ready (function () {                
         $('.btnAdd').click (function () {                                        
             $('.addInput').append (                        
@@ -42,9 +31,9 @@
                 <button type="button" class="btnRemove">코드삭제하기</button><br>'                    
             ); // end append                            
             $('.btnRemove').on('click', function () { 
-                $(this).prev().remove (); // remove the textbox
-                $(this).next ().remove (); // remove the <br>
-                $(this).remove (); // remove the button
+                $(this).prev().remove(); // remove the textbox
+                $(this).next().remove(); // remove the <br>
+                $(this).remove(); // remove the button
             });
         }); // end click                                            
     });

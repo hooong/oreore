@@ -1,0 +1,8 @@
+<form action="{% url 'mod_medicine' %}" method='POST'>
+    {% csrf_token %}
+    이름 : <input type="text" name='medi_name'><br>
+    code : {{code}} <br>
+    <input type="hidden" value='{{code}}' name='insurcode'>
+    <input type="hidden" value='{{pre_id}}' name='pre_id'>
+    <input type="submit">
+</form>

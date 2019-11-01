@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title></title>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="./icon.ico">
 </head>
 <body>
@@ -20,7 +26,7 @@
 			flex:1 1 750px; 
 			background-color:#f0e9e2; 
 			border-radius: 3px;
-			width: 80%;
+			width: 90%;
 			margin-top:30px;
 			box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
 			font-family: 'KOMACON'; 
@@ -39,20 +45,103 @@
 			color:#f4f1e9
 		}
 /*#5fb1af*/
+#pageTitle{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+#myTitle{
+	flex: 1 1;
+	justify-content: center;
+	align-items: center;
+	font-size:16pt;
+	height:40px;
+}
+
+a{
+	color:#1E2022;
+	text-decoration: none;
+}
+a:visited{
+	color:#1E2022;
+	text-decoration: none;
+}
+#menuContainer {
+  position: fixed;
+  bottom:0px;
+  left:0px;
+  width: 100%;
+  height: 65px;
+  background-color: rgb(45, 48, 51);
+  padding: 10px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+    align-items: center;
+}
+#menuAddButton{
+  font-size:17pt;
+  color:white;
+}
+.test{
+	display:none;
+}
+#inputBox{
+	width:80%;
+	height:30px;
+}
+
 	</style>
 <div class="mainContainer">
 	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
 	<div class="main">
-		모든 처방전 <br><br>
+			
+		<div id="pageTitle">
+			<div id="myTitle">내 처방전</div>
+		</div>
+		<hr>
+		<form class="test" action="{% url 'add_prescription' %}" method="POST">
+				{% csrf_token %}
+				<input id="inputBox" type="text" name='name' placeholder="처방전의 이름을 입력해주세요.">
+			
+				<button type="submit">확인</button>
+			</form>
 		{% for prescription in prescriptions %}
-			<a href="{% url 'detail_prescription' prescription.id %}">{{ prescription.prescriptionName }}</a> <br>
-			{{ prescription.createdDate }}	<a href="{% url 'submit_img' prescription.id %}">약 추가하기</a><hr>
+		<div class="prescriptionList">
+			<div style="padding:8px;text-align: left;font-size:10pt;color:gray;">9/24(화)</div>
+			<div style="display:flex;">
+				<div style="flex:1 1;white-space:nowrap; padding:8px;text-align:left;overflow:hidden;text-overflow: ellipsis ">
+					<a href="{% url 'detail_prescription' prescription.id %}">{{ prescription.prescriptionName }}</a>
+				</div>
+				<div style="flex:0 0;flex-basis:20px;padding:10px 0;">
+					<svg style="width:10px; color:gray"aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>
+				</div>
+			</div>
+			<hr style="border: 0.5px solid rgb(204, 204, 204);width:95%">
+		</div>
+	<!-- <a href="{% url 'submit_img' prescription.id %}">약 추가하기</a> -->
         {% endfor %}
-        
-        <button><a href="{% url 'add_prescription' %}">추가</a></button>
+
+		<!-- <button id="addButton" onclick="openadd()">추가</button> -->
+		
 	</div>
 	<div id="tail">Copyrightⓒ2019 by 오래오래 | Contact Us </div>
 </div>
-
+<div id="menuContainer">
+		<div id="menuAddButton"  onclick="openadd()">처방전 추가</div>
+	</div>
 </body>
 </html>
+<script>
+function openadd(){
+	$('.prescriptionList').toggle(300);
+	$('.test').toggle(300);
+	if($('#menuAddButton').html() == '처방전 추가'){
+		$('#menuAddButton').html('추가 취소');
+	}else{
+		$('#menuAddButton').html('처방전 추가');
+	}
+	
+}
+</script>
+<!--{{ prescription.createdDate }}-->

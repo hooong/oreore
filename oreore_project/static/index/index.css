@@ -1,0 +1,217 @@
+
+
+		@font-face { font-family: 'Binggrae-Bold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae-Bold.woff') format('woff'); font-weight: normal; font-style: normal; }
+		@font-face { font-family: 'KOMACON'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff'); font-weight: normal; font-style: normal; }
+		@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
+		body{ background-color: #b4b8ba; margin : 0px; }	
+
+		.mainContainer{
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.main {
+			flex:1 1 750px; 
+			background-color:#f0e9e2; 
+			border-radius: 4px;
+			width: 80%;
+			margin-top:30px;
+			box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
+			font-family: 'KOMACON'; 
+			font-weight: bold;
+			text-align: center;
+			font-size:14pt;
+			margin-bottom: 30px;
+			padding:10px;
+		}
+		.search{
+			border-radius: 3px;
+			margin:10px;
+			border:1px solid;
+			width:45px;height: 45px;
+
+		}
+		#tail{
+			color:#f4f1e9
+		}
+
+#searchBtn{
+	flex: 0 0 60px;
+}
+.searchDiv{
+	display:flex;
+}
+#searchInput{
+	flex:1 1 100%;
+}
+
+.toggleWrap { 
+	position: relative;
+}
+
+.toggleWrap > span {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 2;
+  color: #fff;
+}
+
+#toggle_alarm {
+  display: none;
+}
+
+input:active + div label,
+input:checked + div label { /* 체크 됐을때 */
+  border: 15px solid #b4b8ba;
+  box-shadow: 0 0 10px #b4b8ba;
+}
+
+input:active + div label > span,
+input:checked + div label > span {  /* 체크 됐을때 */
+  left: 34px;
+	
+}
+input:active + div label >span> #medi,
+input:checked + div label >span> #medi{
+		display:none;
+	}
+
+.toggleWrap > div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  
+  height: 20px;
+  margin-top: 5px;
+}
+
+label {
+  display: block;
+  width: 60px;
+  height: 30px;
+  box-sizing: border-box;
+  border-radius: 36px;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+label > span {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25), 0 3px 3px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.275, -0.45, 0.725, 1.45);
+  background: #fff;
+}
+/*#5fb1af*/
+
+#searchBox{
+	font-family: 'Binggrae-Bold';
+	
+	padding:10px;
+	border-radius : 3px;
+	border:1px solid #b4b8ba;
+	transition: .3s;
+	width:100%;
+	box-sizing: border-box;
+	height:40px;
+	font-size:15pt;
+	
+}
+#searchBox:focus{
+	box-shadow: 0 0 10px #b4b8ba;
+	transition: .3s;
+}
+
+#sbtn{
+	margin-top:5px;
+	width:100%;
+	height:40px;
+	background-color:#cfc7bf;
+	border:0;
+}
+
+
+
+.main > hr{
+			margin : 0px;
+		}
+		.search{
+			border-radius: 3px;
+			margin:10px;
+			border:1px solid;
+			width:45px;height: 45px;
+
+		}
+		.searchList{
+			display:flex;
+			text-align: left;
+		}
+		.searchListText{
+			padding : 0 10px;
+			flex : 0  100%;
+		}
+		.searchListButton{
+			
+			flex:0 0 60px;
+			display:flex;
+			align-items:center; justify-content: center;
+		}
+		.nmStyle{
+			font-size:10pt;
+		}
+		.cdStyle{
+			font-size:14pt;
+		}
+		#foot{
+			box-sizing:border-box;
+			padding:20px;
+			width:100%;
+			height:65px;
+			background-color:rgb(45, 48, 51);
+		}
+		#menuContainer {
+  width: 100%;
+  height: 65px;
+  background-color: rgb(45, 48, 51);
+  padding: 10px;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+#menuElementsHome,#menuElementsSearch,#menuElementsMypage {
+  flex: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+#menuElementsSearch>span,
+  #menuElementsMypage>span,
+    #menuElementsHome>span {
+      color: white;
+}
+#menuElementsSearch > div,
+  #menuElementsMypage > div,
+    #menuElementsHome > div {
+      display: flex;
+      justify-content: center;
+}
+
+      .jbFixed {
+        transition: top 1s ease-in-out;
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+      }

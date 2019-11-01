@@ -35,3 +35,9 @@ def detail_prescription(request, pre_id):
     }
 
     return render(request, 'detail_prescription.html', context)
+
+def mod_medicine(request):
+    if request.method == 'POST':
+        return 0
+    else:
+        return render(request, "mod_medicine.html")

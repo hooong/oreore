@@ -16,7 +16,7 @@
 {% for medicine in medi %}
     {{medicine.insuranceCode}} <br>
     {% if medicine.mediName == ''%}
-        <a href="{% url 'mod_medicine' %}" rel="modal:open">약 이름 넣기</a> <br>
+        <a href="{% url 'mod_medicine_view' code=medicine.insuranceCode pre_id=pre.id %}" rel="modal:open">약 이름 넣기</a> <br>
     {% else %}
         {{medicine.mediName}} <br>
     {% endif %}

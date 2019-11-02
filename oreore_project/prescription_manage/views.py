@@ -29,11 +29,14 @@ def detail_prescription(request, pre_id):
     prescription = Prescription.objects.get(id=pre_id)
     disease = Disease.objects.filter(linkPrescription=prescription)
     medi = Medicine.objects.filter(linkPrescription=prescription)
-
+    diszip = zip(disease,range(30))
     context = {
         'medi':medi,
         'pre':prescription,
         'dis':disease,
+        'diszip':diszip,
+        
+        
     }
 
     return render(request, 'detail_prescription.html', context)

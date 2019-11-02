@@ -130,7 +130,7 @@ a:visited{
 	<div id="tail">Copyrightⓒ2019 by 오래오래 | Contact Us </div>
 </div>
 <div id="menuContainer">
-		<div id="menuAddButton"  onclick="openadd()">처방전 추가</div>
+		<div id="menuAddButton"   onclick="openadd()">처방전 추가</div>
 	</div>
 </body>
 </html>
@@ -140,8 +140,9 @@ function openadd(){
 	$('.test').toggle(300);
 	if($('#menuAddButton').html() == '처방전 추가'){
 		$('#menuAddButton').html('추가 취소');
+		$('html').scrollTop(0);
 	}else{
-		$('#menuAddButton').html('처방전 추가');
+		$('#menuAddButton').html('처방전 추가');		
 	}
 	
 }

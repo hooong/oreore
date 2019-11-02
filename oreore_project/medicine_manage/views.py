@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import *
 from prescription_manage.models import *
 from bs4 import BeautifulSoup as bs4
-import requests
+import requests, json, os
+from oreore_project.settings import BASE_DIR
 
 # 낱알정보 api 
 def find_medicine(iscode):
@@ -27,7 +28,32 @@ def find_medicine(iscode):
 # 약 저장
 def save_medicin(iscode,pre_id):
     prescription = Prescription.objects.get(id=pre_id)
-    name, img = find_medicine(iscode)
+
+    filename = os.path.join(BASE_DIR,'data/medicine_data.json')
+    with open(filename, 'r') as f:
+        medicines = json.load(f)
+
+    # 약 자체db 검색
+    if iscode in medicines:
+        name = medicines[iscode]['name']
+        if 'img' in medicines[iscode]:
+            img = medicines[iscode]['img']
+        else:
+            img = ''
+    else:
+        # 약 api검색
+        name, img = find_medicine(iscode)
+
+        if not iscode in medicines:
+            medicine = dict()
+            medicine["name"] = name
+            medicine['img'] = img
+
+            medicines[iscode] = medicine
+            
+            os.remove(filename)
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(medicines, f, indent=4)
 
     medi = Medicine()
     medi.mediName = name

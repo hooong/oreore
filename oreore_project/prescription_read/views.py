@@ -88,9 +88,6 @@ def confirm_code(request,pre_id):
         iscode_list = iscode_str.split(',')
 
         for iscode in iscode_list:
-            find_medicine(iscode)
-        
-        for iscode in iscode_list:
             save_medicin(iscode,pre_id)
 
         return redirect('all_prescription')

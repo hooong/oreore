@@ -1,0 +1,140 @@
+@font-face { font-family: 'KOMACON'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
+body{ background-color: #b4b8ba }	
+p{margin:10px 0;}
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.main {
+    padding-top:20px;
+    color:#1E2022;
+    flex:1 1 750px; 
+    background-color:#f0e9e2; 
+    border-radius: 3px;
+    width: 90%;
+    margin-top:0px;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
+    font-family: 'KOMACON'; 
+    font-weight: bold;
+    text-align: center;
+    font-size:14pt;
+    margin-bottom: 30px;
+    
+}
+.clipboard{
+    background-color:#1E2022;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 90%;
+    width:90%;
+    justify-content: center;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.clip {
+        position: relative;
+        top:18px;
+        z-index:999;
+        width:150px;
+        height:20px;
+        border:solid 4px #b9b9b9;
+        border-radius: 4px;
+        
+}
+
+
+.main > hr{
+    margin : 0px;
+}
+.search{
+    border-radius: 3px;
+    margin:10px;
+    border:1px solid;
+    width:45px;height: 45px;
+
+}
+.searchList{
+    display:flex;
+    text-align: left;
+}
+.searchListText{
+    padding : 0 10px;
+    flex : 0  100%;
+}
+.searchListButton{
+
+    flex:0 0 60px;
+    display:flex;
+    align-items:center; justify-content: center;
+}
+
+.searchListButton > div{
+    width:100%;
+    border-radius : 7px;
+    border: 2px dashed rgba(180,184,186);
+    background-color:rgba(0,0,0,0.4);
+    padding : 10px;
+}
+.nmStyle{
+    font-size:10pt;
+}
+.cdStyle{
+    font-size:14pt;
+}
+#tail{
+    color:#f4f1e9
+}
+
+#clip1 {
+position:absolute;
+top:13px;
+left:-5px;
+height:5px;
+width:15px;
+border-left: 7px solid black;
+border-bottom:7px solid black;
+border-top:0px;
+border-right:0px;
+}
+#clip2 {
+position:absolute;
+top:13px;
+right:-5px;
+height:5px;
+width:15px;
+border-right: 7px solid black;
+border-bottom:7px solid black;
+border-top:0px;
+border-left:0px;
+}
+.test{
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition:all 0.5s ease-in-out;
+-o-transition:all 0.5s ease-in-out;
+transition:all 0.5s ease-in-out;
+}
+
+#menuContainer {
+    position: fixed;
+    bottom:0px;
+    left:0px;
+    width: 100%;
+    height: 65px;
+    background-color: rgb(45, 48, 51);
+    padding: 10px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+      align-items: center;
+  }
+  #menuAddButton{
+    text-align:center;
+    flex:1;
+    justify-content: center;
+    font-size:17pt;
+    color:white;
+  }

@@ -17,7 +17,7 @@
         <div class="main">
                 <h1 style="font-size: 5.5vw">2019년 9월 24일 처방 이력</h1>
 {{pre.prescriptionName}} <br>
-<a href="/disease/add/{{pre.id}}?q="><button>질병추가하기</button></a> <br>
+<a href=""><button>질병추가하기</button></a> <br>
         {% for disease,i in diszip %}
 
         <div onclick="opens('{{i}}')"  style="background-color:#b4b8ba;padding:10px; margin:10px;display:flex"><div style="flex:1 1">{{disease.kcdCode}} {{disease.diesName}}</div><div id="plus{{i}}" style="flex:0 0 20px">+</div></div>
@@ -72,7 +72,13 @@
 <div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
 
 
-</div>
-
+<div id="menuContainer">
+        <div id="menuAddButton" onclick="location.href='/disease/add/{{pre.id}}?q='">
+        질병코드 추가
+      </div>
+      <div id="menuAddButton">
+            의약품 추가
+          </div>
+    </div>
 </body>
 </html>

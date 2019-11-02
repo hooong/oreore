@@ -13,6 +13,7 @@
     {{disease.diesName}} <br>
 {% endfor %}
 <hr>
+<a href="{% url 'submit_img' pre.id %}">약추가</a>  <br>
 {% for medicine in medi %}
     {{medicine.insuranceCode}} <br>
     {% if medicine.mediName == ''%}

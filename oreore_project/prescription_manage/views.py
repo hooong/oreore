@@ -27,16 +27,21 @@ def add_prescription(request):
 
 def detail_prescription(request, pre_id):
     prescription = Prescription.objects.get(id=pre_id)
-    disease = Disease.objects.filter(linkPrescription=prescription)
+    diseases = Disease.objects.filter(linkPrescription=prescription)
     medi = Medicine.objects.filter(linkPrescription=prescription)
-    diszip = zip(disease,range(30))
+
+    disease_list = []
+
+    for disease in diseases:
+        disease_dict = find_disease_detail(disease)
+        disease_list.append(disease_dict)
+
+    diszip = zip(disease_list,range(30))
     context = {
         'medi':medi,
         'pre':prescription,
         'dis':disease,
         'diszip':diszip,
-        
-        
     }
 
     return render(request, 'detail_prescription.html', context)
@@ -71,3 +76,36 @@ def mod_medicine(request):
     medicine.save()
         
     return redirect('/prescription/detail/'+str(pre_id))
+
+# 자체db에서 질별내용 확인
+def find_disease_detail(disease):
+    filename = os.path.join(BASE_DIR,'data/disease_data.json')
+    with open(filename, 'r') as f:
+        diseases = json.load(f)
+
+    code = disease.kcdCode
+    disease_dict = {'dname_kor':disease.diesName, 'kcdcode':disease.kcdCode, 'category':'',
+                    'dname_eng':'', 'definition':'', 'cause':'', 'symptom':'',
+                    'treatment':'', 'etc':'', 'lifestyle':''}
+    
+    if code in diseases:
+        disease_dict = paste_detail(diseases,disease_dict,code)
+    elif (code[:-1] + '-') in diseases:
+        disease_dict = paste_detail(diseases,disease_dict,code[:-1]+'-')
+    elif (code+'-') in diseases:
+        disease_dict = paste_detail(diseases,disease_dict,code+'-')
+    
+    return disease_dict
+
+# 자체db에서 내용 복사
+def paste_detail(disease,disease_dict,code):
+    disease_dict['dname_kor'] = disease[code]['Dname_kor']
+    disease_dict['category'] = disease[code]['Category']
+    disease_dict['dname_eng'] = disease[code]['Dname_eng']
+    disease_dict['definition'] = disease[code]['Definition']
+    disease_dict['cause'] = disease[code]['Cause']
+    disease_dict['symptom'] = disease[code]['Symptom']
+    disease_dict['treatment'] = disease[code]['Treatment']
+    disease_dict['etc'] = disease[code]['etc']
+
+    return disease_dict

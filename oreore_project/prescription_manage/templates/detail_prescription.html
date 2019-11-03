@@ -22,12 +22,11 @@
             
         <div onclick="opens('{{i}}')"  style="background-color:#b4b8ba;padding:10px; margin:10px;display:flex"><div style="flex:1 1">{{disease.dname_kor}} {{disease.kcdcode}}</div><div id="plus{{i}}" style="flex:0 0 20px">+</div></div>
         <div id="box{{i}}" style="display:none;font-size:11pt;text-align: left;padding:10px;margin:0px;">
-            {{disease.category}}<br>
-            {{disease.definition}}<br><br>
-            {{disease.cause}}
+            분류 : {{disease.category}}<br><br>
+            정의 : {{disease.definition}}<br><br>
+            원인 : {{disease.cause}}
         </div>
         {% endfor %}
-        <div onclick="opens('{{i}}')"  style="background-color:#b4b8ba;padding:10px; margin:10px;display:flex"><div style="flex:1 1">{{disease.kcdCode}} {{disease.diesName}}</div><div id="plus{{i}}" style="flex:0 0 20px">+</div></div>
 <hr>
 
 {% for medicine in medi %}

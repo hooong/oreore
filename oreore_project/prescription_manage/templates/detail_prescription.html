@@ -19,25 +19,12 @@
 {{pre.prescriptionName}} <br>
 
         {% for disease,i in diszip %}
-
-        <div onclick="opens('{{i}}')"  style="background-color:#b4b8ba;padding:10px; margin:10px;display:flex"><div style="flex:1 1">{{disease.kcdCode}} {{disease.diesName}}</div><div id="plus{{i}}" style="flex:0 0 20px">+</div></div>
-        <div id="box{{i}}" style="display:none;font-size:11pt;text-align: left;padding:10px;margin:0px;">원인 :<br>편도선이 세균이나 바이러스에 감염되어 생김. 특히 연쇄상구균이 원인균이다.
-
-			<br>
-			1) 인후통(통증이 약하거나 심함)<br>
-			2) 삼키기 곤란하다.  <br>
-
-			3) 오한과 발열(40도 이상)<br>
-
-			4) 턱 양쪽의 임파선이 붓는다.<br>
-
-			5) 두통<br>
-
-			6) 귀의 통증<br>
-
-			7) 기침(경우에 따라)<br>
-
-			8) 구토(경우에 따라)<br>
+            
+        <div onclick="opens('{{i}}')"  style="background-color:#b4b8ba;padding:10px; margin:10px;display:flex"><div style="flex:1 1">{{disease.dname_kor}} {{disease.kcdcode}}</div><div id="plus{{i}}" style="flex:0 0 20px">+</div></div>
+        <div id="box{{i}}" style="display:none;font-size:11pt;text-align: left;padding:10px;margin:0px;">
+            {{disease.category}}<br>
+            {{disease.definition}}<br><br>
+            {{disease.cause}}
         </div>
         {% endfor %}
         <div onclick="opens('{{i}}')"  style="background-color:#b4b8ba;padding:10px; margin:10px;display:flex"><div style="flex:1 1">{{disease.kcdCode}} {{disease.diesName}}</div><div id="plus{{i}}" style="flex:0 0 20px">+</div></div>
@@ -53,7 +40,7 @@
     <img src="{{medicine.img_url}}" alt="Not image" width="155"> <br>
 {% endfor %}
 <hr>
-<a href="{% url 'all_prescription' %}"><button>back</button></a>
+<a href=""><button>back</button></a>
 <script>
         function opens(i){
             

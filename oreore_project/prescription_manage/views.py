@@ -38,9 +38,9 @@ def detail_prescription(request, pre_id):
 
     diszip = zip(disease_list,range(30))
     context = {
+        
         'medi':medi,
         'pre':prescription,
-        'dis':disease,
         'diszip':diszip,
     }
 

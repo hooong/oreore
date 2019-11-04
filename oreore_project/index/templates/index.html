@@ -41,13 +41,8 @@
 					
 					<div class="toggleWrap">
 							<input id="searchBox" type="text" name="q" placeholder="질병분류기호 검색" value="{{ q }}">
-							<input type="checkbox" id="toggle_alarm" name="" value="" />
-							<div>
-								<label for="toggle_alarm">
-									<span><svg id="medi" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pills" class="svg-inline--fa fa-pills fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M112 32C50.1 32 0 82.1 0 144v224c0 61.9 50.1 112 112 112s112-50.1 112-112V144c0-61.9-50.1-112-112-112zm48 224H64V144c0-26.5 21.5-48 48-48s48 21.5 48 48v112zm139.7-29.7c-3.5-3.5-9.4-3.1-12.3.8-45.3 62.5-40.4 150.1 15.9 206.4 56.3 56.3 143.9 61.2 206.4 15.9 4-2.9 4.3-8.8.8-12.3L299.7 226.3zm229.8-19c-56.3-56.3-143.9-61.2-206.4-15.9-4 2.9-4.3 8.8-.8 12.3l210.8 210.8c3.5 3.5 9.4 3.1 12.3-.8 45.3-62.6 40.5-150.1-15.9-206.4z"></path></svg></span>
-								</label>
-								
-							</div>
+						
+
 					</div>
 					
 				
@@ -55,18 +50,21 @@
 
 			</form>
 			{% for cd, nm in sick %}
-			<div class="searchList">
-				<div class="searchListText">
-					<p class="cdStyle">{{cd}}</p>
-					<p class="nmStyle">{{nm}}</p>
-				</div>
-				<div class="searchListButton">
-						<button style="box-shadow:0px 0px 4px #535455;background-color:#b4b8ba;border-radius: 100%; width:40px;height:40px;color:white;border:0px;"><div style="height:26px;font-size:15pt;margin:0px;">+</div></button>
-
-				</div>
+			<div class="prescriptionList">
+				<div style="padding:8px;text-align: left;font-size:10pt;color:gray;">{{cd}}</div>
+				<a href="">
+				<div style="display:flex;">
+					<div style="flex:1 1;white-space:nowrap; padding:8px;text-align:left;overflow:hidden;text-overflow: ellipsis ">
+						{{nm}}
+					</div>
+					<div style="flex:0 0;flex-basis:20px;padding:10px 0;">
+						<svg style="width:10px; color:gray"aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>
+					</div>
+				</div></a>
+				<hr style="border: 0.5px solid rgb(204, 204, 204);width:95%">
 			</div>
-			<hr>
 				{% endfor %}
+				
 	</div>
 
 	<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>

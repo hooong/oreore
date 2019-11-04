@@ -1,19 +1,34 @@
+{% load staticfiles %}
 <!-- Remember to include jQuery :) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
 <!-- jQuery Modal -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<link rel="stylesheet" href="{% static 'prescription_manage/detail_prescription.css' %}">
+<div class="mainContainer">
 
-
+        <h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
+        <div class="clipboard">
+            <div class="clip"><div style="position: relative;width:80px;height:10px;background-color:#b9b9b9;top:-10px;left:50%;transform:translateX(-50%)"></div>
+            <div id="clip1"></div><div id="clip2"></div>
+    
+        </div>
+        <div class="main">
+                <h1 style="font-size: 5.5vw">2019년 9월 24일 처방 이력</h1>
 {{pre.prescriptionName}} <br>
-<a href="/disease/add/{{pre.id}}?q="><button>질병추가하기</button></a> <br>
-{% for disease in dis %}
-    {{disease.kcdCode}} <br>
-    {{disease.diesName}} <br>
-{% endfor %}
+
+        {% for disease,i in diszip %}
+            
+        <div onclick="opens('{{i}}')"  style="background-color:#b4b8ba;padding:10px; margin:10px;display:flex"><div style="flex:1 1">{{disease.dname_kor}} {{disease.kcdcode}}</div><div id="plus{{i}}" style="flex:0 0 20px">+</div></div>
+        <div id="box{{i}}" style="display:none;font-size:11pt;text-align: left;padding:10px;margin:0px;">
+            분류 : {{disease.category}}<br><br>
+            정의 : {{disease.definition}}<br><br>
+            원인 : {{disease.cause}}
+        </div>
+        {% endfor %}
 <hr>
-<a href="{% url 'submit_img' pre.id %}">약추가</a>  <br>
+
 {% for medicine in medi %}
     {{medicine.insuranceCode}} <br>
     {% if medicine.mediName == ''%}
@@ -24,4 +39,34 @@
     <img src="{{medicine.img_url}}" alt="Not image" width="155"> <br>
 {% endfor %}
 <hr>
-<a href="{% url 'all_prescription' %}"><button>back</button></a>
+<a href=""><button>back</button></a>
+<script>
+        function opens(i){
+            
+            $('#box'+i).toggle();
+            if($("#plus"+i).text() == "+"){ $("#plus"+i).text("-")
+            }else{
+                $("#plus"+i).text("+");
+            }
+        
+        }
+        </script>
+        
+    </div>
+
+
+</div>
+<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
+
+
+<div id="menuContainer">
+        <div id="menuAddButton" onclick="location.href='/disease/add/{{pre.id}}?q='">
+        질병코드 추가
+      </div>
+
+      <div id="menuAddButton" onclick="location.href='/prescription_read/submit/{{pre.id}}'">
+            의약품 추가
+          </div>
+    </div>
+</body>
+</html>

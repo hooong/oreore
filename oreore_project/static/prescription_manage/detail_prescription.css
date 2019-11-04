@@ -132,6 +132,9 @@ transition:all 0.5s ease-in-out;
       align-items: center;
   }
   #menuAddButton{
+    text-align:center;
+    flex:1;
+    justify-content: center;
     font-size:17pt;
     color:white;
   }

@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 import requests
-import json ,re
+import json ,re, os
 from bs4 import BeautifulSoup
+from oreore_project.settings import BASE_DIR
 
 
 def index(request):
@@ -49,6 +50,43 @@ def index(request):
         sicknms.append("첫화면")
 
     sick = zip(sickcds,sicknms)
+    diseases = dict()
+    for code,name in sick:
+        diseases[code] = find_disease_detail(code,name)
+
     return render(request, 'index.html', {
-        'sick':sick,
+        'diseases':diseases,
     })
+
+
+# 자체db에서 질별내용 확인
+def find_disease_detail(code,name):
+    filename = os.path.join(BASE_DIR,'data/disease_data.json')
+    with open(filename, 'r') as f:
+        diseases = json.load(f)
+
+    disease_dict = {'dname_kor':name, 'kcdcode':code, 'category':'',
+                    'dname_eng':'', 'definition':'', 'cause':'', 'symptom':'',
+                    'treatment':'', 'etc':'', 'lifestyle':''}
+    
+    if code in diseases:
+        disease_dict = paste_detail(diseases,disease_dict,code)
+    elif (code[:-1] + '-') in diseases:
+        disease_dict = paste_detail(diseases,disease_dict,code[:-1]+'-')
+    elif (code+'-') in diseases:
+        disease_dict = paste_detail(diseases,disease_dict,code+'-')
+    
+    return disease_dict
+
+# 자체db에서 내용 복사
+def paste_detail(disease,disease_dict,code):
+    disease_dict['dname_kor'] = disease[code]['Dname_kor']
+    disease_dict['category'] = disease[code]['Category']
+    disease_dict['dname_eng'] = disease[code]['Dname_eng']
+    disease_dict['definition'] = disease[code]['Definition']
+    disease_dict['cause'] = disease[code]['Cause']
+    disease_dict['symptom'] = disease[code]['Symptom']
+    disease_dict['treatment'] = disease[code]['Treatment']
+    disease_dict['etc'] = disease[code]['etc']
+
+    return disease_dict

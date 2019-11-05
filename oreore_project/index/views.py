@@ -45,8 +45,8 @@ def index(request):
             
             
     else:
-        sickcds.append("검색 내용 없음")
-        sicknms.append("검색 내용 없음")
+        sickcds.append("첫화면")
+        sicknms.append("첫화면")
 
     sick = zip(sickcds,sicknms)
     return render(request, 'index.html', {

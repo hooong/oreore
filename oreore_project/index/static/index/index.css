@@ -157,6 +157,7 @@
 		  text-decoration: none;
 		  color:rgb(45, 48, 51);
 	  }
-	  a{
+	  a:link{
+		color:rgb(45, 48, 51);
 		text-decoration: none;
 	  }

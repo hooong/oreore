@@ -1,0 +1,79 @@
+@font-face { font-family: 'KOMACON'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.2/KOMACON.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'S-CoreDream-8Heavy'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff'); font-weight: normal; font-style: normal; }
+/* body{ background-color: #b4b8ba }	 */
+body{ background-color: #b4b8ba; margin : 0px; }	
+
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.main {
+    flex:1 1 750px; 
+    background-color:#f0e9e2; 
+    border-radius: 4px;
+    width: 90%;
+    margin-top:30px;
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
+    font-family: 'KOMACON'; 
+    font-weight: bold;
+    text-align: center;
+    font-size:14pt;
+    margin-bottom: 30px;
+    padding:10px;
+}
+.search{
+    border-radius: 3px;
+    margin:10px;
+    border:1px solid;
+    width:45px;height: 45px;
+
+}
+#tail{
+    color:#f4f1e9
+}
+/*#5fb1af*/
+#pageTitle{
+display:flex;
+justify-content: center;
+align-items: center;
+}
+#myTitle{
+flex: 1 1;
+font-size:16pt;
+
+}
+
+a{
+color:#1E2022;
+text-decoration: none;
+}
+a:visited{
+color:#1E2022;
+text-decoration: none;
+}
+#menuContainer {
+position: fixed;
+bottom:0px;
+left:0px;
+width: 100%;
+height: 65px;
+background-color: rgb(45, 48, 51);
+padding: 10px;
+display: flex;
+box-sizing: border-box;
+justify-content: center;
+align-items: center;
+}
+#menuAddButton{
+font-size:17pt;
+color:white;
+}
+.test{
+display:none;
+}
+#inputBox{
+width:80%;
+height:30px;
+}

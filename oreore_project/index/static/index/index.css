@@ -15,7 +15,7 @@
 			flex:1 1 750px; 
 			background-color:#f0e9e2; 
 			border-radius: 4px;
-			width: 80%;
+			width: 90%;
 			margin-top:30px;
 			box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
 			font-family: 'KOMACON'; 
@@ -46,71 +46,8 @@
 	flex:1 1 100%;
 }
 
-.toggleWrap { 
-	position: relative;
-}
 
-.toggleWrap > span {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 2;
-  color: #fff;
-}
 
-#toggle_alarm {
-  display: none;
-}
-
-input:active + div label,
-input:checked + div label { /* 체크 됐을때 */
-  border: 15px solid #b4b8ba;
-  box-shadow: 0 0 10px #b4b8ba;
-}
-
-input:active + div label > span,
-input:checked + div label > span {  /* 체크 됐을때 */
-  left: 34px;
-	
-}
-input:active + div label >span> #medi,
-input:checked + div label >span> #medi{
-		display:none;
-	}
-
-.toggleWrap > div {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 10px;
-  
-  height: 20px;
-  margin-top: 5px;
-}
-
-label {
-  display: block;
-  width: 60px;
-  height: 30px;
-  box-sizing: border-box;
-  border-radius: 36px;
-  border: 1px solid #e5e5e5;
-  background: #fff;
-  transition: all 0.3s ease;
-}
-
-label > span {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  display: block;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25), 0 3px 3px 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.3s cubic-bezier(0.275, -0.45, 0.725, 1.45);
-  background: #fff;
-}
 /*#5fb1af*/
 
 #searchBox{
@@ -215,3 +152,12 @@ label > span {
         bottom: 0px;
         left: 0px;
       }
+
+	  a:visited{
+		  text-decoration: none;
+		  color:rgb(45, 48, 51);
+	  }
+	  a:link{
+		color:rgb(45, 48, 51);
+		text-decoration: none;
+	  }

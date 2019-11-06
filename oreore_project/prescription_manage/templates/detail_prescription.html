@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div class="mainContainer">
 
-        <h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
+        <a href="/"><h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1></a>
         <div class="clipboard">
             <div class="clip"><div style="position: relative;width:80px;height:10px;background-color:#b9b9b9;top:-10px;left:50%;transform:translateX(-50%)"></div>
             <div id="clip1"></div><div id="clip2"></div>
@@ -44,7 +44,7 @@
 
     
     {% else %}
-    <img src="{{medicine.img_url}}" alt="Not image" width="100%">
+    <img src="{{medicine.img_url}}" alt="Not image" width="90%">
     {%endif%}
     <div style="font-size:10px;color:gray;margin-top:-15px;margin-bottom: 10px">({{medicine.insuranceCode}})</div>
     {% if medicine.mediName == ''%}

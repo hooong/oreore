@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Remember to include jQuery :) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
 	<title></title>
 	<link rel="stylesheet" href="{% static 'index/index.css' %}">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -67,12 +75,13 @@
   
 
 			</div>
-			
+			{% elif cd == "검색 내용 없음" %}
+				<p>검색내용없음</p>
 			{%else%}
 			<div class="prescriptionList">
 
 				<div style="padding:8px;text-align: left;font-size:10pt;color:gray;">{{cd}}</div>
-				<a href="">
+				<a href="{% url 'detail_search' code=cd %}" rel="modal:open">
 				<div style="display:flex;">
 					<div style="flex:1 1;white-space:nowrap; padding:8px;text-align:left;overflow:hidden;text-overflow: ellipsis ">
 						{{nm}}

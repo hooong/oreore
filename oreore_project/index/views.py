@@ -42,30 +42,32 @@ def index(request):
                 sicknms.append(el)
             for el in sickcd:
                 sickcds.append(el.text)   
-            # print(els)
-            
-            
+            # print(els)  
     else:
         sickcds.append("첫화면")
         sicknms.append("첫화면")
 
     sick = zip(sickcds,sicknms)
-    diseases = dict()
-    for code,name in sick:
-        diseases[code] = find_disease_detail(code,name)
 
     return render(request, 'index.html', {
-        'diseases':diseases,
+        'sick':sick,
     })
+
+def detail_search(request, code):
+    disease = find_disease_detail(code)
+
+    context = {'disease':disease}
+
+    return render(request, 'detail_search.html', context)
 
 
 # 자체db에서 질별내용 확인
-def find_disease_detail(code,name):
+def find_disease_detail(code):
     filename = os.path.join(BASE_DIR,'data/disease_data.json')
     with open(filename, 'r') as f:
         diseases = json.load(f)
 
-    disease_dict = {'dname_kor':name, 'kcdcode':code, 'category':'',
+    disease_dict = {'dname_kor':'', 'kcdcode':code, 'category':'',
                     'dname_eng':'', 'definition':'', 'cause':'', 'symptom':'',
                     'treatment':'', 'etc':'', 'lifestyle':''}
     

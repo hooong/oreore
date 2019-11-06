@@ -3,6 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
 <!-- jQuery Modal -->
+<script src="https://kit.fontawesome.com/4487a79980.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="{% static 'prescription_manage/detail_prescription.css' %}">
@@ -31,18 +32,32 @@
 <hr>
 
 {% for medicine in medi %}
-    {{medicine.insuranceCode}} <br>
-    {% if medicine.mediName == '' and medicine.img_url == ''%}
-    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="image" class="svg-inline--fa fa-image fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56zM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48z"></path></svg>
-    <br>
-    <a href="{% url 'mod_medicine_view' code=medicine.insuranceCode pre_id=pre.id %}" rel="modal:open">약 이름 넣기</a> <br>
-    {% elif medicine.img_url == '' %}
-    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="image" class="svg-inline--fa fa-image fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56zM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48z"></path></svg>
-        {{medicine.mediName}} <br>
+<div style="text-align: center; ">
+    {% if medicine.img_url == '' %}
+    <div style="width:100%; height:159px;display:flex;justify-content:center ; font-family: 'KOMACON';font-weight: 100">
+    
+        <div style="display:flex; justify-content:center ;align-items: center;flex-direction: column">
+            <i class="fas fa-image "></i>
+            <span style="font-size:9pt;">약품정보를 준비중입니다</span>
+        </div>
+    </div>
+
+    
+    {% else %}
+    <img src="{{medicine.img_url}}" alt="Not image" width="100%">
+    {%endif%}
+    <div style="font-size:10px;color:gray;margin-top:-15px;margin-bottom: 10px">({{medicine.insuranceCode}})</div>
+    {% if medicine.mediName == ''%}
+    <a href="{% url 'mod_medicine_view' code=medicine.insuranceCode pre_id=pre.id %}" rel="modal:open">약품명 직접수정</a>
+    {% else %}
+        <div style="font-size:10pt">{{medicine.mediName}}</div>
     {% endif %}
-    <img src="{{medicine.img_url}}" alt="Not image" width="155"> <br>
+    <hr style="width:90%;border: 0.5px solid rgb(204, 204, 204)">
+</div>
 {% endfor %}
+
 <hr>
+
 <a href=""><button>back</button></a>
 <script>
         function opens(i){

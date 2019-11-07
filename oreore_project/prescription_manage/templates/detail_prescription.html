@@ -19,7 +19,12 @@
         <div class="main">
                 <h1 style="font-size: 5.5vw">2019년 9월 24일 처방 이력</h1>
 {{pre.prescriptionName}} <br>
-
+<div style="text-align: left; margin-left:10px;">
+        <i style="color:#b4b8ba;"class="fas fa-stethoscope fa-2x"></i>
+        <div style="width:42px; text-align:center; position:relative;top:-3px;font-size:8pt;background-color:#f0e9e2">
+            질병 정보
+        </div>
+</div>
         {% for disease,i in diszip %}
             {% if disease.dname_kor == 'z' %}
             z

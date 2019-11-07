@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'total_manage',
     # index
     'index',
+    # 질병 잘걸리는 달 알림
+    'disease_noti',
 ]
 
 MIDDLEWARE = [

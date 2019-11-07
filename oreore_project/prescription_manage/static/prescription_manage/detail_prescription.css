@@ -140,9 +140,11 @@ transition:all 0.5s ease-in-out;
   }
 
   a:visited{
+    color:white;
       text-decoration: none;
 
   }
   a:link{
+      color:white;
       text-decoration : none;
   }

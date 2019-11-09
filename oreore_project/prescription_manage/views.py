@@ -29,13 +29,17 @@ def detail_prescription(request, pre_id):
     prescription = Prescription.objects.get(id=pre_id)
     diseases = Disease.objects.filter(linkPrescription=prescription)
     medi = Medicine.objects.filter(linkPrescription=prescription)
+    if not medi:
+        medi = ['empty'] # 약품정보가 없을때
 
     disease_list = []
 
     for disease in diseases:
         disease_dict = find_disease_detail(disease)
         disease_list.append(disease_dict)
-
+    if disease_list == [] :
+        disease_list = ['empty'] # 리스트에 없을때를 구분하기위해
+        
     diszip = zip(disease_list,range(30))
     context = {
         

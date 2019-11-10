@@ -13,6 +13,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{% static 'prescription_manage/all_prescription.css' %}">
 	<link rel="shortcut icon" href="./icon.ico">
+
+	<!-- noti_predict -->
+	<script type="text/javascript">
+	$(document).ready(function() {
+		noti();
+	});
+	</script>
 </head>
 <body>
 	<style>
@@ -27,6 +34,14 @@
 			<div id="myTitle">내 처방전</div>
 		</div>
 		<hr>
+		
+		
+		<!-- noti -->
+		<div id="noti">
+			{% for dis in disease %}
+				<input type="hidden" id='kcd' value='{{dis}}'>
+			{% endfor %}
+		</div>
 		<form class="test" action="{% url 'add_prescription' %}" method="POST">
 				{% csrf_token %}
 				<input id="searchBox" type="text" name='name' placeholder="처방전의 이름을 입력해주세요.">
@@ -34,6 +49,7 @@
 				<button type="submit">확인</button>
 			</form>
 		{% for prescription in prescriptions %}
+
 		<div class="prescriptionList">
 			<div style="padding:8px;text-align: left;font-size:10pt;color:gray;">{{prescription.createdDate|date:"n/j(D)"}}</div>
 			<a href="{% url 'detail_prescription' prescription.id %}">
@@ -63,17 +79,37 @@
 </body>
 </html>
 <script>
-function openadd(){
-	$('.prescriptionList').toggle(300);
-	$('.test').toggle(300);
-	if($('#menuAddButton').html() == '처방전 추가'){
-		$('#menuAddButton').html('추가 취소');
-		$('html').scrollTop(0);
-	}else{
-		$('#menuAddButton').html('처방전 추가');		
+	// noti
+	function noti(){
+		var kcdcodes = $("#kcd").val();
+		for (var i=0;i<kcdcodes.length;i++){
+			kcdcode = kcdcodes[i]
+			if (kcdcode = 'J00'){
+				$.ajax({
+					type: 'POST',
+					url: '/disease_noti/noti/',
+					data: {code:kcdcode},
+					dataType: 'json',
+					success: function(result){
+						$('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
+					},
+					error: function(e) { console.log('error:'+e.status);}
+				});
+			}
+		}			
 	}
-	
-}
+
+
+	function openadd(){
+		$('.prescriptionList').toggle(300);
+		$('.test').toggle(300);
+		if($('#menuAddButton').html() == '처방전 추가'){
+			$('#menuAddButton').html('추가 취소');
+			$('html').scrollTop(0);
+		}else{
+			$('#menuAddButton').html('처방전 추가');		
+		}
+	}
 </script>
 <!--{{ prescription.createdDate }}-->
 {%else%}

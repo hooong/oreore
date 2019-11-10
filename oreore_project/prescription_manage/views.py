@@ -10,8 +10,18 @@ def all_prescription(request):
     if request.user.is_authenticated:
         prescriptions = Prescription.objects.filter(ownUser=request.user).order_by('-id')
         
+        disease = []
+        for pre in prescriptions:
+            diseases = Disease.objects.filter(linkPrescription=pre)
+            for dis in diseases:
+                if not dis.kcdCode == '검색 내용 없음':
+                    disease.append(dis.kcdCode)
+
+        disease = list(set(disease))
+        
         context = {
             'prescriptions': prescriptions,
+            'disease': disease,
         }
     else:
         context = {}

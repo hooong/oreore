@@ -1,4 +1,6 @@
 {%load staticfiles %}
+
+{% if user.is_authenticated %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,3 +76,9 @@ function openadd(){
 }
 </script>
 <!--{{ prescription.createdDate }}-->
+{%else%}
+<script type="text/javascript">
+    alert('먼저 로그인을 해주세요.')
+    window.location.href = '{%url "login" %}';
+</script>
+{%endif%}

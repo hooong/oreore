@@ -33,7 +33,7 @@
 			</form>
 		{% for prescription in prescriptions %}
 		<div class="prescriptionList">
-			<div style="padding:8px;text-align: left;font-size:10pt;color:gray;">9/24(화)</div>
+			<div style="padding:8px;text-align: left;font-size:10pt;color:gray;">{{prescription.createdDate|date:"n/j(D)"}}</div>
 			<a href="{% url 'detail_prescription' prescription.id %}">
 			<div style="display:flex;">
 				<div style="flex:1 1;white-space:nowrap; padding:8px;text-align:left;overflow:hidden;text-overflow: ellipsis ">

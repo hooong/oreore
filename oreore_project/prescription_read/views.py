@@ -22,10 +22,6 @@ def read_pres(user):
     # ocr api돌리기
     pre_text = detect_text(img_path)
 
-    # 읽은 파일 및 모델 삭제
-    os.remove(img_path)
-    pre_img_model.delete()
-
     iscode = collect_code(pre_text)
 
     return iscode
@@ -89,6 +85,17 @@ def confirm_code(request,pre_id):
 
         for iscode in iscode_list:
             save_medicin(iscode,pre_id)
+
+        # 읽을 사진 모델 찾기
+        pre_img_model = Prescription_img.objects.get(user=request.user)
+
+        # 저장된 사진 path찾기
+        path = pre_img_model.pre_img.url
+        img_path = os.path.join(BASE_DIR,path[1:])      # os.path.join() 쓸때 뒤에꺼에 '/'가 들어가면 안됨.
+
+        # 읽은 파일 및 모델 삭제
+        os.remove(img_path)
+        pre_img_model.delete()
 
         return redirect('all_prescription')
     else:

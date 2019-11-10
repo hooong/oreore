@@ -35,16 +35,6 @@
     justify-content: center;
     /* align-items:center; */
 }
-body {margin: 10px;}
-.where {
-  display: block;
-  margin: 25px 15px;
-  font-size: 11px;
-  color: #000;
-  text-decoration: none;
-  font-family: verdana;
-  font-style: italic;
-} 
 
 .filebox input[type="file"] {
 	position: absolute;
@@ -58,15 +48,7 @@ body {margin: 10px;}
 }
 
 
-/* named upload */
-.filebox .upload-name {
 
-}
-
-/* imaged preview */
-.filebox .upload-display {
-	margin-bottom: 5px;
-}
 
 @media(min-width: 768px) {
 	.filebox .upload-display {
@@ -78,7 +60,7 @@ body {margin: 10px;}
 
 .filebox .upload-thumb {
 	display: inline-block;
-	width: 54px;
+	width: 100px;
 	padding: 2px;
 	vertical-align: middle;
 	border: 1px solid #ddd;
@@ -111,8 +93,8 @@ body {margin: 10px;}
                 <div class="imgUpload">
                         <div class="filebox preview-image">
                     <input type="file" name="pre_img" accept="image/*" required="" id="id_pre_img"class="upload-hidden">
-                    <label for="id_pre_img"><i class="fas fa-image fa-2x"></i></label>
-                    <p class="upload-name">처방전 사진을 첨부해주세요</p>
+                    <label for="id_pre_img"><i class="fas fa-image fa-2x"></i><p class="upload-name">처방전 사진을 첨부해주세요</p></label>
+                    
                     </div>
                 </div>
                 

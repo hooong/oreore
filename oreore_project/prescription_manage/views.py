@@ -7,7 +7,7 @@ from oreore_project.settings import BASE_DIR
 
 def all_prescription(request):
     # 처방전 (로그인 한 사람만 들어올수있는페이지)
-    prescriptions = Prescription.objects.filter(ownUser=request.user)
+    prescriptions = Prescription.objects.filter(ownUser=request.user).order_by('-id')
     
     context = {
         'prescriptions': prescriptions,

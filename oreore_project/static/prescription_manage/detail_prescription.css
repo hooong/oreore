@@ -10,7 +10,6 @@ p{margin:10px 0;}
 }
 .main {
     padding-top:20px;
-    color:#1E2022;
     flex:1 1 750px; 
     background-color:#f0e9e2; 
     border-radius: 3px;
@@ -19,6 +18,7 @@ p{margin:10px 0;}
     box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
     font-family: 'KOMACON'; 
     font-weight: bold;
+    color:#1E2022;
     text-align: center;
     font-size:14pt;
     margin-bottom: 30px;
@@ -137,4 +137,14 @@ transition:all 0.5s ease-in-out;
     justify-content: center;
     font-size:17pt;
     color:white;
+  }
+
+  a:visited{
+    color:white;
+      text-decoration: none;
+
+  }
+  a:link{
+      color:white;
+      text-decoration : none;
   }

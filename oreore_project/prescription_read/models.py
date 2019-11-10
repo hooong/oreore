@@ -5,3 +5,4 @@ from oreore_project import settings
 class Prescription_img(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='prescription_img')
     pre_img = models.ImageField(upload_to="prescription_img")
+   

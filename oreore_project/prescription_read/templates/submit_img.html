@@ -12,7 +12,7 @@
 
 
 	<title></title>
-	<link rel="stylesheet" href="{% static 'index/index.css' %}">
+	<link rel="stylesheet" href="{% static 'prescription_read/submit_img.css' %}">
 	<script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
@@ -24,11 +24,79 @@
 	
 	<style>
 
-
 .imgUpload{
     width:90%;
     height:150px;
     border: 2px dashed #968f86 ;
+    font-size:9pt;
+    color:#968f86;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items:center; */
+}
+body {margin: 10px;}
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+} 
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+	border: 0;
+}
+
+
+/* named upload */
+.filebox .upload-name {
+
+}
+
+/* imaged preview */
+.filebox .upload-display {
+	margin-bottom: 5px;
+}
+
+@media(min-width: 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb {
+	display: inline-block;
+	width: 54px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img {
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+	height: auto;
+}
+
+.filebox.bs3-primary label {
+  color: #fff;
+  background-color: #337ab7;
+	border-color: #2e6da4;
 }
 	</style>
 </head>
@@ -37,101 +105,89 @@
 	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
 	<div class="main">
 
-        <form method='post' action="{% url 'submit_img' pre_id%}" enctype="multipart/form-data">
+        <form method='post' action="{% url 'submit_img' pre_id%}" enctype="multipart/form-data" id="frm">
             {% csrf_token %}
-            <div class="imgUpload">
-
+            <div>
+                <div class="imgUpload">
+                        <div class="filebox preview-image">
+                    <input type="file" name="pre_img" accept="image/*" required="" id="id_pre_img"class="upload-hidden">
+                    <label for="id_pre_img"><i class="fas fa-image fa-2x"></i></label>
+                    <p class="upload-name">처방전 사진을 첨부해주세요</p>
+                    </div>
+                </div>
+                
+            </div>
             
-            {{ pre_img_form.as_p }}
-        </div>
-            <button type="submit">Upload</button>
         </form>
 				
 	</div>
 
 	<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
   </div>
-	<div id="menuContainer">
-		<div id="menuElementsHome">
-		  <div>
-			<svg style="width:30px;height:25px;color:white;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="home" class="svg-inline--fa fa-home fa-w-18" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-			  <path fill="currentColor" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path>
-			</svg>
-		  </div>
-		  <span>Home</span>
-		</div>
-		<div onclick="location.href='prescription/all'" id="menuElementsMypage">
-		  <div>
-	  <svg style="color:white; width:23px;"aria-hidden="true" focusable="false" data-prefix="far" data-icon="clipboard" class="svg-inline--fa fa-clipboard fa-w-12" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm144 418c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V118c0-3.3 2.7-6 6-6h42v36c0 6.6 5.4 12 12 12h168c6.6 0 12-5.4 12-12v-36h42c3.3 0 6 2.7 6 6z"></path>
-	  </svg>
-		  </div>
-		  <span >Mypage</span>
-		</div>
-		<div id="menuElementsSearch">
-		  <div>
-			<svg width="25px" aria-hidden="true" focusable="false" data-prefix="fas" style="color:white;" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-			  <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-			</svg>
-		  </div>
-		  <span>Search</span>
-		</div>
-</div>
+  <div style="width:100%;height:75px;"></div>
+  <div id="menuContainer">
+          <div id="menuAddButton" onclick="submitBtn()">
+          제출
+        </div>
+      </div>
+  </body>
 <script>
-		$( document ).ready( function() {
- var jbOffset = $( '#menuContainer' ).offset();
-	 $( '#menuContainer' ).addClass( 'jbFixed' )
+    
+   function submitBtn() {
+        document.getElementById('frm').submit();
+        return false;
+        // alert("{{Prescription_img.pre_img.path}}");
+    };
 
- $( window ).scroll( function() {
- var scrollBottom = $(window).scrollTop() + $(window).height();
+    $(document).ready(function(){
+   var fileTarget = $('.filebox .upload-hidden');
 
-		if(scrollBottom > jbOffset.top ) {
-	 $( '#menuContainer' ).removeClass( 'jbFixed' );
-	 }else{
-	 $( '#menuContainer' ).addClass( 'jbFixed' )
-	 }
-	 
- });
- } );
- var typingBool = false; 
-var typingIdx=0; 
-var liIndex = 0;
-var liLength = $(".typing-txt>ul>li").length;
+    fileTarget.on('change', function(){
+        if(window.FileReader){
+            // 파일명 추출
+            var filename = $(this)[0].files[0].name;
+        } 
 
-// 타이핑될 텍스트를 가져온다 
-var typingTxt = $(".typing-txt>ul>li").eq(liIndex).text(); 
-typingTxt=typingTxt.split(""); // 한글자씩 자른다. 
-if(typingBool==false){ // 타이핑이 진행되지 않았다면 
- typingBool=true; 
- var tyInt = setInterval(typing,100); // 반복동작 
-} 
-	
-function typing(){ 
-if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복 
-	$(".typing").append(typingTxt[typingIdx]); // 한글자씩 이어준다. 
-	typingIdx++; 
-} else{ //한문장이끝나면
-	//다음문장으로.. 마지막문장이면 다시 첫번째 문장으로 
-	if(liIndex>=liLength-1){
-		liIndex=0;
-	}else{
-		liIndex++; 
-	}
-	
-	//다음문장을 타이핑하기위한 셋팅
-		 typingIdx=0;
-		 typingBool = false; 
-		 typingTxt = $(".typing-txt>ul>li").eq(liIndex).text(); 
-		
-	//다음문장 타이핑전 1초 쉰다
-			clearInterval(tyInt);
-			setTimeout(function(){
-				 $(".typing").html('');
-				tyInt = setInterval(typing,100);
-			},1000);
- } 
-}  
+        else {
+            // Old IE 파일명 추출
+            var filename = $(this).val().split('/').pop().split('\\').pop();
+        };
 
+        $('.upload-name').text(filename);
+    });
+
+    //preview image 
+    var imgTarget = $('.preview-image .upload-hidden');
+
+    imgTarget.on('change', function(){
+        var parent = $(this).parent();
+        parent.children('.upload-display').remove();
+
+        if(window.FileReader){
+            //image 파일만
+            if (!$(this)[0].files[0].type.match(/image\//)) return;
+            
+            var reader = new FileReader();
+            reader.onload = function(e){
+                var src = e.target.result;
+                parent.prepend('<img src="'+src+'" class="upload-thumb">');
+                $('.fas').remove();
+            }
+            reader.readAsDataURL($(this)[0].files[0]);
+        }
+
+        else {
+            $(this)[0].select();
+            $(this)[0].blur();
+            var imgSrc = document.selection.createRange().text;
+            parent.prepend('<img src="'+src+'" class="upload-thumb">');
+
+            var img = $(this).siblings('.upload-display').find('img');
+            img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+        }
+    });
+});
+    
 </script>
 </body>
-
 

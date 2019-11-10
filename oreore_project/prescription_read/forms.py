@@ -7,5 +7,6 @@ class Prescription_imgForm(forms.ModelForm):
         fields = ['pre_img']
 
         labels = {
-            'pre_img': '처방전'
+            'pre_img': '',
         }
+     

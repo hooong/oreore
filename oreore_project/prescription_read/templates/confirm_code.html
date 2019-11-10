@@ -3,6 +3,7 @@
 <form action="{% url 'confirm_code' pre_id %}" method='POST'>
     {% csrf_token %}
     {% for is in iscode %}
+    {{Prescription_img.pre_img.path}}
         <input type="text" name='iscode' value="{{is}}"><br>
     {% endfor %}
     <div class='addInput'>

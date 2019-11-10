@@ -26,7 +26,7 @@ def signin(request):
         user = authenticate(uid = uid, password = password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('all_prescription')
         else:
             return HttpResponse('로그인 실패. 다시 시도 해보세요.')
     else:

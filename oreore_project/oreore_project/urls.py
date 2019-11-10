@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 import index.views
 import prescription_read.views
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index.views.index, name='index'),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('medicine/', include('medicine_manage.urls')),
     path('index/', include('index.urls')),
     path('disease_noti/', include('disease_noti.urls')),
-]
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

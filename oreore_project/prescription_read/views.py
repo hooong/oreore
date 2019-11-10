@@ -75,6 +75,8 @@ def collect_code(text):
 
 # OCR 후 입력값 확인받기
 def confirm_code(request,pre_id):
+    # 읽을 사진 모델 찾기
+    pre_img_model = Prescription_img.objects.get(user=request.user)
     if request.method == 'POST':
         prescription = Prescription(id=pre_id)
 
@@ -85,9 +87,6 @@ def confirm_code(request,pre_id):
 
         for iscode in iscode_list:
             save_medicin(iscode,pre_id)
-
-        # 읽을 사진 모델 찾기
-        pre_img_model = Prescription_img.objects.get(user=request.user)
 
         # 저장된 사진 path찾기
         path = pre_img_model.pre_img.url
@@ -102,4 +101,4 @@ def confirm_code(request,pre_id):
         # iscode 읽어오기
         iscode_list = read_pres(request.user)
 
-        return render(request, 'confirm_code.html', {'iscode':iscode_list, 'pre_id':pre_id})
+        return render(request, 'confirm_code.html', {'iscode':iscode_list, 'pre_id':pre_id, 'img':pre_img_model})

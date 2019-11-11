@@ -1,40 +1,191 @@
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<img src="{{img.pre_img.url}}">
-<form action="{% url 'confirm_code' pre_id %}" method='POST'>
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Remember to include jQuery :) -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+	<!-- jQuery Modal -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
+	<title></title>
+	<link rel="stylesheet" href="{% static 'prescription_read/submit_img.css' %}">
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://kit.fontawesome.com/4487a79980.js" crossorigin="anonymous"></script>
+	<link rel="shortcut icon" href="./icon.ico">
+  
+	<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+	
+	<style>
+
+.imgUpload{
+    width:90%;
+    height:150px;
+    border: 2px dashed #968f86 ;
+    font-size:9pt;
+    color:#968f86;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items:center; */
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+	border: 0;
+}
+
+
+
+
+@media(min-width: 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb {
+	display: inline-block;
+	width: 100px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img {
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+	height: auto;
+}
+
+.filebox.bs3-primary label {
+  color: #fff;
+  background-color: #337ab7;
+	border-color: #2e6da4;
+}
+
+.inputStyle{
+    width:90%;
+    border-radius:2px;
+    border:none;
+    height:30px;
+    margin:10px;
+    padding:5px;
+    font-size:12pt;
+    font-weight:bold;
+}
+.inputStyle:focus{
+    box-shadow: 0 0 10px #b4b8ba;
+	transition: .3s;
+}
+.minusBtn{
+   display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 60px;
+}
+.addInput{
+    
+}
+.addInputArea{display:flex;flex-basis:800px;}
+.inputArea{
+    flex:1 1 100%;
+    width:100%;
+}
+.btnRemove{
+    background-color: rgb(45, 48, 51);
+    color:white;
+    width:100%;
+    border:none;
+
+}
+	</style>
+</head>
+<body>
+<div class="mainContainer">
+	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
+	<div class="main">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<img style="width:100%"src="{{img.pre_img.url}}">
+<div style="color:gray;font-size:10pt;">위의 이미지와 상이한 정보가 있으면 수정해주세요!</div>
+<form id="frm" style="text-align:center;" action="{% url 'confirm_code' pre_id %}" method='POST'>
     {% csrf_token %}
     {% for is in iscode %}
-    
-        <input type="text" name='iscode' value="{{is}}"><br>
+    <div class="addInputArea"><div class="inputArea"><input class="inputStyle" type="text" name='iscode' value="{{is}}"></div>
+    <div class="minusBtn"></div></div>
+        
     {% endfor %}
     <div class='addInput'>
         <!-- input tag 추가되는 부분 -->
     </div>
     <input type="hidden" name='iscode[]' id='iscode_list' value=''>
-    <button type='button' class="btnAdd">코드추가하기</button>
-    <input type="submit" onclick='getlist()'>
+    <button type='button' class="btnAdd">+</button>
 </form>
+
+
+       
+	</div>
+
+	<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
+  </div>
+  <div style="width:100%;height:75px;"></div>
+  <div id="menuContainer">
+          <div id="menuAddButton" href="#" onclick="getlist()">
+          수정 완료
+        </div>
+      </div>
+  </body>
+
+</body>
+
 
 <script type="text/javascript">
     // iscode -> list
     function getlist() {
         var list = new Array();
         $("input[name=iscode]").each(function(index, item){
+            if($(item).val() == ""){
+                alert("빈값이있어요");
+                exit();
+            }
             list.push($(item).val());
+
         });
         $("#iscode_list").val(list);
+            document.getElementById('frm').submit();
+       
     }
 
     // 코드 input 추가 및 삭제
     $(document).ready (function () {                
         $('.btnAdd').click (function () {                                        
             $('.addInput').append (                        
-                '<input type="type" name="iscode" value="">\
-                <button type="button" class="btnRemove">코드삭제하기</button><br>'                    
+                '<div class="addInputArea"><div class="inputArea"><input class="inputStyle" type="type" name="iscode" value=""></div>\
+                <div class="minusBtn"><button type="button" class="btnRemove">제거</button></div></div>'                    
             ); // end append                            
             $('.btnRemove').on('click', function () { 
-                $(this).prev().remove(); // remove the textbox
-                $(this).next().remove(); // remove the <br>
-                $(this).remove(); // remove the button
+                $(this).parent().prev().remove();
+                $(this).parent().remove();
+                $(this).remove();
+                 // remove the textbox
+
             });
         }); // end click                                            
     });

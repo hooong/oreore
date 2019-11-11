@@ -102,3 +102,4 @@ def confirm_code(request,pre_id):
         iscode_list = read_pres(request.user)
 
         return render(request, 'confirm_code.html', {'iscode':iscode_list, 'pre_id':pre_id, 'img':pre_img_model})
+

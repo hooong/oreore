@@ -42,6 +42,7 @@
 				<input type="hidden" id='kcd' value='{{dis}}'>
 			{% endfor %}
 		</div>
+
 		<form class="test" action="{% url 'add_prescription' %}" method="POST">
 				{% csrf_token %}
 				<input id="searchBox" type="text" name='name' placeholder="처방전의 이름을 입력해주세요.">
@@ -98,7 +99,7 @@
 			}
 		}
 	}
-
+	
 	function openadd(){
 		$('.prescriptionList').toggle(300);
 		$('.test').toggle(300);

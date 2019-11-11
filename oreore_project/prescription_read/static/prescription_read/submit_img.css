@@ -35,11 +35,7 @@
 			color:#f4f1e9
 		}
 
-        .main > form> div{
-            display:flex; justify-content: center;
-            
-        
-        }
+
         #menuContainer {
             position: fixed;
             bottom:0px;

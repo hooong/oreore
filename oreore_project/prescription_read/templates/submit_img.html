@@ -90,13 +90,14 @@
         <form method='post' action="{% url 'submit_img' pre_id%}" enctype="multipart/form-data" id="frm">
             {% csrf_token %}
             <div>
-                <div class="imgUpload">
-                        <div class="filebox preview-image">
+                <label style="width:100%; display:flex;justify-content: center;"for="id_pre_img"> 
+                    <div class="imgUpload">
+                    <div class="filebox preview-image">
                     <input type="file" name="pre_img" accept="image/*" required="" id="id_pre_img"class="upload-hidden">
                     <label for="id_pre_img"><i class="fas fa-image fa-2x"></i><p class="upload-name">처방전 사진을 첨부해주세요</p></label>
                     
                     </div>
-                </div>
+                </div></label>
                 
             </div>
             

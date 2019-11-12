@@ -50,7 +50,7 @@
 
 /*#5fb1af*/
 
-#searchBox{
+.searchBox{
 	font-family: 'Binggrae-Bold';
 	
 	padding:10px;
@@ -63,12 +63,12 @@
 	font-size:15pt;
 	
 }
-#searchBox:focus{
+.searchBox:focus{
 	box-shadow: 0 0 10px #b4b8ba;
 	transition: .3s;
 }
 
-#sbtn{
+.sbtn{
 	margin-top:5px;
 	width:100%;
 	height:40px;
@@ -161,3 +161,17 @@
 		color:rgb(45, 48, 51);
 		text-decoration: none;
 	  }
+	  
+#toggle1{
+	display:block;
+}
+#toggle2{
+	display:none;
+	
+}
+.toggleSearch{
+	cursor: pointer;
+	margin:8px 0px;text-align: right;font-size:10pt;color:gray;
+	position: relative;
+	z-index:9999999; /* 블루라이트 필터를 입혀놔서 cursor를 사용하려면 이렇게해야함*/
+}

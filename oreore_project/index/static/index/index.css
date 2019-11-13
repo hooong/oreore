@@ -175,3 +175,6 @@
 	position: relative;
 	z-index:9999999; /* 블루라이트 필터를 입혀놔서 cursor를 사용하려면 이렇게해야함*/
 }
+#info_medi{
+	margin:10px;
+}

@@ -47,7 +47,7 @@
 				
 					
 				
-					<div class="toggleSearch" onclick="toggleSearch()">의약품 검색 ></div>
+					<div class="toggleSearch" onclick="toggleSearch(2)">의약품 검색 ></div>
 					<input class="searchBox" type="text" name="q" placeholder="질병분류기호 검색" value="{{ q }}">
 				
 						<button class="sbtn" value=""><svg width="17px" aria-hidden="true" focusable="false" data-prefix="fas" style="color:white;" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></button>
@@ -55,19 +55,21 @@
 			</form>
 		</div>
 		<div id="toggle2">
-				<div class="toggleSearch" onclick="toggleSearch()">질병분류기호 검색 ></div>
-			<input class="searchBox" id="searchBox_medi" type="text" name="medi" placeholder="의약품 검색" value=''>							<button class="sbtn" id="medi_button" value="" onclick="medi_search();"><svg width="17px" aria-hidden="true" focusable="false" data-prefix="fas" style="color:white;" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></button>
+				<div class="toggleSearch" onclick="toggleSearch(1)">질병분류기호 검색 ></div>
+			<input class="searchBox" id="searchBox_medi" type="text" name="medi" placeholder="의약품 검색" value=''>
+			<button class="sbtn" id="medi_button" value="" onclick="medi_search();"><svg width="17px" aria-hidden="true" focusable="false" data-prefix="fas" style="color:white;" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg></button>
 		</div>
 
 			<!-- 의약품 검색 -->
+	
 			<div id="info_medi">
 				<!-- 여기에 의약품 띄워주기 -->
 			</div>
-
+			<div id="info_disease">
 			{% for cd, nm in sick %}
 			{%if cd == '첫화면' %}
 			<div style="margin:10px;">
-
+				
 					<div class="typing-txt" >
 							<ul>
 									
@@ -104,8 +106,8 @@
 			</div>
 			{%endif%}
 				{% endfor %}
-				
-	</div>
+			</div>
+		</div>
 
 	<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
   </div>
@@ -183,7 +185,7 @@ if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복
 	//다음문장 타이핑전 1초 쉰다
 			clearInterval(tyInt);
 			setTimeout(function(){
-				 $(".typing").html('');
+				$(".typing").html('');
 				tyInt = setInterval(typing,100);
 			},1000);
  } 
@@ -204,7 +206,31 @@ if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복
 			success: function(result){
 				// 아직 code로 검색했을때와 형식이 같아지지 않음 ajax를 if로 나눌지 아예 views에서 형실을 맞출지 고민중.
 				// 여기서 0~len으로 해서 잘 띄워봅시다. for문 활용!
-				$('#info_medi').html(result['1']['name']);
+				if(result== null) $('#info_medi').html('없어요');
+				for(n in result) {
+					
+					if(n==0){
+					$('#info_medi').html('<div><img style="width:90%" src=' + result[n]['img'] + '><div>');
+					$('#info_medi').append(result[n]['name']);
+					}else{
+					$('#info_medi').append('<div><img style="width:90%" src=' + result[n]['img'] + '><div>');
+					$('#info_medi').append(result[n]['name']);
+					}
+				}
+				// var searchMedi = 1;
+				
+				// $('#info_medi').html('<div><img style="width:90%" src=' + result['0']['img'] + '><div>');
+				// $('#info_medi').append(result['0']['name']);
+				
+				// while(result[searchMedi]['name'] != ''){
+				// $('#info_medi').append('<div><img style="width:90%" src=' + result[searchMedi]['img'] + '><div>');
+				// $('#info_medi').append(result[searchMedi]['name']);
+				// searchMedi++;
+				//}
+				
+				
+				// 
+				
 			},
 			error: function(e) { console.log('error:'+e.status);}
 		});
@@ -214,9 +240,14 @@ if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복
 
 
 //서치박스 토글
-function toggleSearch(){
+function toggleSearch(n){
 		$('#toggle1').toggle();
 		$('#toggle2').toggle();
+		if (n==1) {
+			$('#info_medi').css('display','none');
+		}else{
+			$('#info_disease').css('display','none');
+		}
 }
 </script>
 

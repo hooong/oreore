@@ -29,14 +29,19 @@ def predict_month(request):
         data_month.append(data_mon.sum(axis=1)[1])
 
 
+    # data 정규화 ( 0 ~ 100 )
     data_month = np.array(data_month)
-    data_mon_avg = (data_month // 3) // 10000   # 0~100까지의 값만 사용하기 위해 나눔
-    data_mon_avg = zip(range(1,13),data_mon_avg)
+    data_min = data_month.min()
+    data_max = data_month.max()
+    data_denom = data_max - data_min
+    for i in range(len(data_month)):
+        data_month[i] = (float(data_month[i] - data_min) / float(data_denom)) * 100
+    data_mon_avg = zip(range(1,13),data_month)
 
     predict_mon = {}
     predict_mon['noti'] = {}
     for mon, data in data_mon_avg:
-        if data >= 70:
+        if data >= 50:
             if kcdcode in predict_mon['noti']:
                 predict_mon['noti'][kcdcode] = predict_mon['noti'][kcdcode] + ',' +str(mon) + '월'
             else:

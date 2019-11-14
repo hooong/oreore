@@ -42,8 +42,8 @@
 <div class="mainContainer">
 		<div id="mySidenav" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="#">About</a>
-				<a href="#">Services</a>
+				<a href="/">Home</a>
+				<a href="{% url 'all_prescription' %}">Services</a>
 				<a href="#">Clients</a>
 				<a href="#">Contact</a>
 			  </div>
@@ -181,7 +181,7 @@ if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복
 				// 여기서 0~len으로 해서 잘 띄워봅시다. for문 활용!
 		
 				
-				if(JSON.stringify(result) == '{}') $('#info_medi').html('없어요');
+				if(JSON.stringify(result) == '{}') $('#info_medi').html('<div style="height: 400px;display:flex;align-items:center;justify-content:center;"><div style="color:gray">없어요</div></div>');
 				for(n in result) {
 					
 					if(n==0){
@@ -222,6 +222,7 @@ function toggleSearch(n){
 			$('#info_medi').css('display','none');
 		}else{
 			$('#info_disease').css('display','none');
+			$('#info_medi').css('display','block');
 		}
 }
 </script>

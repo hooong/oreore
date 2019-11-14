@@ -38,9 +38,7 @@
 		
 		<!-- noti -->
 		<div id="noti">
-			{% for dis in disease %}
-				<input type="hidden" id='kcd' value='{{dis}}'>
-			{% endfor %}
+			<input type="hidden" id='kcd' value='{{disease}}'>
 		</div>
 
 		<form class="test" action="{% url 'add_prescription' %}" method="POST">
@@ -83,16 +81,17 @@
 	// noti
 	function noti(){
 		var kcdcodes = $("#kcd").val();
-		for (var i=0;i<kcdcodes.length;i++){
-			kcdcode = kcdcodes[i]
-			if (kcdcode = 'J00'){
+		var list = kcdcodes.match(/\w+/g);
+		for (i in list){
+			if (list[i]=="J00" || list[i]=="B301"){
 				$.ajax({
 					type: 'POST',
 					url: '/disease_noti/noti/',
-					data: {code:kcdcode},
+					data: {code:list[i]},
 					dataType: 'json',
 					success: function(result){
-						$('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
+						$('#noti').append(JSON.stringify(result));
+						// $('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
 					},
 					error: function(e) { console.log('error:'+e.status);}
 				});

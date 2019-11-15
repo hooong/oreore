@@ -42,41 +42,6 @@
   50%{border-right: 1px solid #000} 
   100%{border-right: 1px solid #fff} 
 }
-.form-control{
-    width:80%;
-    border:0px; 
-    border-radius:3px;
-    padding:3px;
-    height:32px;
-    margin:5px;
-    box-sizing: border-box;
-}
-.loginDiscription{
-    display:flex;
-    width:100%;
-
-    justify-content: center;
-    
-
-}
-.loginDiscription > div{
-    font-family:굴림;
-    font-weight:normal;
-    font-size:10pt;
-    text-align:left;
-    width:80%;
-}
-form > input[type=submit]{
-    margin:5px;
-    background-color:rgb(45, 48, 51);
-    width:80%;
-    height:30px;
-    border:0px;
-    color:#f3eadd;
-    border-radius:3px;
-    
-    font-size:12pt;
-}
 	</style>
 </head>
 <body>
@@ -93,25 +58,17 @@ form > input[type=submit]{
 
 
 	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
-	<div class="main" style="flex:1 1 300px">
-            {% if user.is_authenticated %}
-            <script type="text/javascript">
-                alert('잘못된 접근입니다. \n 이미 로그인이 되어있습니다.')
-                window.location.href = '/';
-            </script>
-            {% else %}
-            <h1>로그인</h1>
-            <form method="POST" action="">
-                {% csrf_token %}
-                <!-- {{ form.as_p }} -->
-                <div class="loginDiscription"><div>ID</div></div>
-                <input type="text" name="uid" class="form-control" maxlength="100" required="" id="id_uid" placeholder="아이디 입력">
-                <div class="loginDiscription"><div>PASSWORD</div></div>
-                <input type="password" name="password" class="form-control" maxlength="128" required="" id="id_password" placeholder="비밀번호 입력">
-                <input type="submit" value="로그인" />
-            </form>
-            {% endif %}
-    </div>
+	<div class="main">
+        <div style="margin:10px;font-family: Georgia, 'Times New Roman', Times, serif;color:rgb(62, 66, 70);font-size:11pt;">
+            이 프로젝트에 참여한 사람들
+        </div>
+            <div class="github-card" data-github="junstone1995" data-width="100%" data-height="" data-theme="default"></div>
+
+            <div class="github-card" data-github="pannchat" data-width="100%" data-height="" data-theme="default"></div>
+       
+            <div class="github-card" data-github="hooong" data-width="100%" data-height="" data-theme="default"></div>
+            
+            <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>        </div>
 
 	<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
   </div>

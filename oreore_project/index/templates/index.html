@@ -45,7 +45,13 @@
 				<a href="/">Home</a>
 				<a href="{% url 'all_prescription' %}">처방전</a>
 				<a href="/">검색</a>
-				<a href="#">Contact</a>
+				<a href="contact">Contact</a>
+				{% if user.is_authenticated %}
+				<a href="{% url 'logout' %}">로그아웃</a>
+				{% else %}
+				<a href="{% url 'login' %}">로그인</a>
+
+				{% endif %}
 			  </div>
 			  <span style="position:absolute;top:7px;left:10px;font-size:40px;cursor:pointer;color:#f3eadd;" onclick="openNav()">&#9776;</span>
 			  

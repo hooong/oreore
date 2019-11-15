@@ -1,27 +1,7 @@
-
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- Remember to include jQuery :) -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-	<!-- jQuery Modal -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
-
-	<title></title>
+{% block contents %}
 	<link rel="stylesheet" href="{% static 'prescription_read/submit_img.css' %}">
-	<script src="https://code.jquery.com/jquery-3.4.1.js"
-	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://kit.fontawesome.com/4487a79980.js" crossorigin="anonymous"></script>
-	<link rel="shortcut icon" href="./icon.ico">
-  
-	<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
-	
 	<style>
 
 .imgUpload{
@@ -80,11 +60,57 @@
   background-color: #337ab7;
 	border-color: #2e6da4;
 }
+#loading{
+    visibility: hidden ;
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    z-index: 1000000;
+}
+#mask {  
+      position:absolute;  
+      z-index:9000;  
+      background-color:#000;  
+      display:none;  
+      left:0;
+      top:0;
+    }
+    '
+    .container {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:350px;
+  height:100px;
+}
+.container h3 {
+  color:rgba(168, 168, 168, 0.9);
+}
+.container .progress-bar {
+  width:0%;
+  height:5px;
+  background:linear-gradient(to right,rgb(76,217,105),rgb(90,200,250),rgb(0,132,255),rgb(52,170,220),rgb(88,86,217),rgb(255,45,83));
+  margin-top:10px;
+  background-size:350px 5px;
+  border-radius:10px;
+  animation:loading 6s ease-in-out forwards;
+  animation-iteration-count : infinite;
+}
+ 
+.container .shadow {
+  width:100%;
+  height:40px;
+  background:linear-gradient(to bottom,rgba(100,100,100,0.17),rgba(100,100,100,0.1),transparent);
+  transform:skew(45deg) translate(15px,5px);
+}
+@keyframes loading {
+  to {
+    width:100%;
+  }
+}
 	</style>
-</head>
-<body>
-<div class="mainContainer">
-	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
+
 	<div class="main">
 
         <form method='post' action="{% url 'submit_img' pre_id%}" enctype="multipart/form-data" id="frm">
@@ -94,7 +120,7 @@
                     <div class="imgUpload">
                     <div class="filebox preview-image">
                     <input type="file" name="pre_img" accept="image/*" required="" id="id_pre_img"class="upload-hidden">
-                    <label for="id_pre_img"><i class="fas fa-image fa-2x"></i><p class="upload-name">처방전 사진을 첨부해주세요</p></label>
+                    <label for="id_pre_img"><i class="fas fa-image fa-2x"></i><p id="pImg"class="upload-name">처방전 사진을 첨부해주세요</p></label>
                     
                     </div>
                 </div></label>
@@ -102,7 +128,15 @@
             </div>
             
         </form>
-				
+        <div id="mask"></div>
+
+        <div id="loading">
+                <div class="container">
+                        <h3>Loading, please wait.</h3>
+                        <div class="progress-bar">
+                          <div class="shadow"></div>
+                        </div>
+                      </div>            </div>
 	</div>
 
 	<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
@@ -116,9 +150,50 @@
   </body>
 <script>
     
+    function wrapWindowByMask(){
+        //화면의 높이와 너비를 구한다.
+        var maskHeight = $(document).height();  
+        var maskWidth = $(window).width();  
+
+        //마스크의 높이와 너비를 화면 것으로 만들어 전체 화면을 채운다.
+        $('#mask').css({'width':maskWidth,'height':maskHeight});  
+
+        //애니메이션 효과 - 일단 1초동안 까맣게 됐다가 80% 불투명도로 간다.    
+        $('#mask').fadeTo("slow",0.8);    
+
+        //윈도우 같은 거 띄운다.
+        $('.window').show();
+    }
+
+    $(document).ready(function(){
+        //검은 막 띄우기
+        $('.openMask').click(function(e){
+            e.preventDefault();
+            wrapWindowByMask();
+        });
+
+        //검은 막을 눌렀을 때
+        $('#mask').click(function () {  
+            $(this).hide();  
+            $('.window').hide();  
+        });      
+    });
+
+
+
+
+
    function submitBtn() {
+       if ($('#pImg').text() == "처방전 사진을 첨부해주세요"){
+        alert("파일이 없습니다.\n처방전 사진을 첨부 해주세요");
+       }else{
+
         document.getElementById('frm').submit();
+        wrapWindowByMask();
+        $("#loading").css("visibility","visible");
         return false;
+       }
+     
         // alert("{{Prescription_img.pre_img.path}}");
     };
 
@@ -174,3 +249,4 @@
 </script>
 </body>
 
+{%endblock%}

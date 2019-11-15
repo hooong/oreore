@@ -1,47 +1,12 @@
+{% extends 'base.html' %}	
+
+{% block contents %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="gc:base" content="http://lab.lepture.com/github-cards/">
-<meta name="gc:theme" content="medium">
-<meta name="gc:client-id" content="client id string">
-<meta name="gc:client-secret" content="client secret string">
-	<!-- Remember to include jQuery :) -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
-	<!-- jQuery Modal -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
-
-    <title></title>
-    <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-
-	<link rel="stylesheet" href="{% static 'index/index.css' %}">
-	<script src="https://code.jquery.com/jquery-3.4.1.js"
-	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="https://kit.fontawesome.com/4487a79980.js" crossorigin="anonymous"></script>
-	<link rel="shortcut icon" href="./icon.ico">
-  
-	<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+<link rel="stylesheet" href="{% static 'index/index.css' %}">
 	
 	<style>
 
-.typing-txt{display: none;}
-.typeing-txt ul{list-style:none;}
-.typing {  
-  display: inline-block; 
-  animation-name: cursor; 
-  animation-duration: 0.3s; 
-  animation-iteration-count: infinite; 
-} 
-@keyframes cursor{ 
-  0%{border-right: 1px solid #fff} 
-  50%{border-right: 1px solid #000} 
-  100%{border-right: 1px solid #fff} 
-}
+
 .form-control{
     width:80%;
     border:0px; 
@@ -78,21 +43,7 @@ form > input[type=submit]{
     font-size:12pt;
 }
 	</style>
-</head>
-<body>
-<div class="mainContainer">
-		<div id="mySidenav" class="sidenav">
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="/">Home</a>
-				<a href="{% url 'all_prescription' %}">처방전</a>
-				<a href="/">검색</a>
-				<a href="contact">Contact</a>
-			  </div>
-			  <span style="position:absolute;top:7px;left:10px;font-size:40px;cursor:pointer;color:#f3eadd;" onclick="openNav()">&#9776;</span>
-			  
 
-
-	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
 	<div class="main" style="flex:1 1 300px">
             {% if user.is_authenticated %}
             <script type="text/javascript">
@@ -130,4 +81,4 @@ form > input[type=submit]{
 					</script>
 </body>
 
-
+{% endblock %}

@@ -38,7 +38,7 @@ p{margin:10px 0;}
 .clip {
         position: relative;
         top:18px;
-        z-index:999;
+        /* z-index:999; */
         width:150px;
         height:20px;
         border:solid 4px #b9b9b9;
@@ -139,12 +139,12 @@ transition:all 0.5s ease-in-out;
     color:white;
   }
 
-  a:visited{
+#menuAddButton a:visited{
     color:white;
       text-decoration: none;
 
   }
-  a:link{
+#menuAddButton a:link{
       color:white;
       text-decoration : none;
   }

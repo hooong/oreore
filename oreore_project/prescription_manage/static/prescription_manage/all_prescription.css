@@ -57,11 +57,11 @@ font-size:16pt;
 	font-size:15pt;
 	
 }
-a{
+.prescriptionList a{
 color:#1E2022;
 text-decoration: none;
 }
-a:visited{
+.prescriptionList a:visited{
 color:#1E2022;
 text-decoration: none;
 }

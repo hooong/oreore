@@ -96,7 +96,7 @@ def confirm_code(request,pre_id):
         os.remove(img_path)
         pre_img_model.delete()
 
-        return redirect('all_prescription')
+        return redirect('/prescription/detail/'+str(pre_id))
     else:
         # iscode 읽어오기
         iscode_list = read_pres(request.user)

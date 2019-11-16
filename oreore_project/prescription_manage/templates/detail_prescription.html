@@ -74,6 +74,13 @@
         <div style="display:inline-block;padding:5px; border-radius: 3px;"><a href="{% url 'mod_medicine_view' code=medicine.insuranceCode pre_id=pre.id %}" rel="modal:open"><i style="color:rgb(45, 48, 51);" class="far fa-edit"></i></a></div>
     {% else %}
         <div style="font-size:10pt;margin:10pt">{{medicine.mediName}}</div>
+        <div style="font-size:10pt;margin:10pt">{{medicine.class_name}}</div>
+        <div style="font-size:10pt;margin:10pt">{{medicine.entp}}</div>
+        <p>용법용량</p>
+        <div style="font-size:10pt;margin:10pt">{{medicine.dosage}}</div>
+        <p>주의사항</p>
+        <div style="font-size:10pt;margin:10pt">{{medicine.caution}}</div>
+        
     {% endif %}
         <hr style="width:90%;border: 0.5px solid rgb(204, 204, 204)">
 </div>

@@ -71,7 +71,7 @@ ROOT_URLCONF = 'oreore_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['oreore_project/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,6 +142,10 @@ LOGIN_URL = '/'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'oreore_project', 'static')   #static 파일들이 현재 어디에 있는지를 쓰는 곳.
+]   
 
 
 

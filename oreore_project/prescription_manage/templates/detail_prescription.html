@@ -1,16 +1,12 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!-- Remember to include jQuery :) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+{% block contents %}
+            
 
-<!-- jQuery Modal -->
-<script src="https://kit.fontawesome.com/4487a79980.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" href="{% static 'prescription_manage/detail_prescription.css' %}">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<div class="mainContainer">
 
-        <a href="/"><h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1></a>
         <div class="clipboard">
             <div class="clip"><div style="position: relative;width:80px;height:10px;background-color:#b9b9b9;top:-10px;left:50%;transform:translateX(-50%)"></div>
             <div id="clip1"></div><div id="clip2"></div>
@@ -103,7 +99,7 @@
 </div>
 <div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
 
-<div style="width:100%;height:65px;"></div>
+<div style="width:100%;height:75px;"></div>
 <div id="menuContainer">
         <div id="menuAddButton" onclick="location.href='/disease/add/{{pre.id}}?q='">
         질병코드 추가
@@ -114,4 +110,4 @@
           </div>
     </div>
 </body>
-</html>
+{%endblock%}

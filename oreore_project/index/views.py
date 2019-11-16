@@ -92,3 +92,6 @@ def paste_detail(disease,disease_dict,code):
     disease_dict['etc'] = disease[code]['etc']
 
     return disease_dict
+
+def contact(request):
+    return render(request, 'contactus.html')

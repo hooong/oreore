@@ -70,6 +70,6 @@ class LoginForm(forms.ModelForm):
             'password' : forms.PasswordInput(attrs={'class': 'form-control'}),
         }
         labels = {
-            'uid': '아이디',
-            'password': '패스워드',
+            'uid': 'ID',
+            'password': 'PW',
         }

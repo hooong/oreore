@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block contents %}
+            
+<link rel="stylesheet" href="{% static 'index/index.css' %}">
+	<meta name="gc:base" content="http://lab.lepture.com/github-cards/">
+	<meta name="gc:theme" content="medium">
+	<meta name="gc:client-id" content="client id string">
+	<meta name="gc:client-secret" content="client secret string">
+	<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+	<div class="main">
+        <div style="margin:10px;font-family: Georgia, 'Times New Roman', Times, serif;color:rgb(62, 66, 70);font-size:11pt;">
+            이 프로젝트에 참여한 사람들
+        </div>
+            <div class="github-card" data-github="junstone1995" data-width="100%" data-height="" data-theme="default"></div>
+
+            <div class="github-card" data-github="pannchat" data-width="100%" data-height="" data-theme="default"></div>
+       
+            <div class="github-card" data-github="hooong" data-width="100%" data-height="" data-theme="default"></div>
+            
+            <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>        </div>
+
+	<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
+  </div>
+
+
+
+
+			  <script>
+					function openNav() {
+					  document.getElementById("mySidenav").style.width = "250px";
+					}
+					
+					function closeNav() {
+					  document.getElementById("mySidenav").style.width = "0";
+					}
+					</script>
+</body>
+
+
+{%endblock%}

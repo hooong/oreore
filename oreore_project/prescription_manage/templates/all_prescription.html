@@ -90,7 +90,9 @@
 					data: {code:list[i]},
 					dataType: 'json',
 					success: function(result){
-						$('#noti').append(JSON.stringify(result));
+						// alert(JSON.stringify(result));
+						notify(JSON.stringify(result));
+						// $('#noti').append(JSON.stringify(result));
 						// $('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
 					},
 					error: function(e) { console.log('error:'+e.status);}

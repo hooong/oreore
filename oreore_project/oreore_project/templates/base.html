@@ -23,28 +23,30 @@
 <body>
 	<div class="mainContainer">
 		<div id="mySidenav" class="sidenav">
-				{% if user.is_authenticated %}
-				<p>현재 유저 : {{user.uid}}</p>
-				<!-- noti -->
+		
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="/">Home</a>
+				<a class="navList"href="{% url 'all_prescription' %}">Prescription</a>
+				<a class="navList"href="/">Search</a>
+                <a class="navList"href="/contact">Contact</a>
+                {% if user.is_authenticated %}
+				
+                <a class="navList" href="{% url 'logout' %}">Sign out</a>
+                <!-- noti -->
+                <div id="notiCon">
 				<div id="noti">
-					<p>당신이 걸릴수도 있는 병!</p>
-					<input type="hidden" id='kcd' value='{{disease}}'>
-				</div>
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="/">Home</a>
-				<a href="{% url 'all_prescription' %}">Prescription</a>
-				<a href="/">Search</a>
-				<a href="/contact">Contact</a>
-				<a href="{% url 'logout' %}">Logout</a>
+                        <p class="navList">{{user.uid}},</p>
+                        
+                        {%if disease %}
+                        <p class="navList" >Caution</p>
+                        <input  type="hidden" id='kcd' value='{{disease}}'>
+                        {%endif%}
+                </div>
+                </div>
 				{% else %}
-				<p>로그인을 해주세요.</p>
-				<a href="{% url 'login' %}">Login</a>
-				<a href="{% url 'signup' %}">Signup</a>
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="/">Home</a>
-				<a href="{% url 'all_prescription' %}">Prescription</a>
-				<a href="/">Search</a>
-				<a href="/contact">Contact</a>
+				<a class="navList" href="{% url 'login' %}">Sign in</a>
+				<a class="navList"href="{% url 'signup' %}">Sign up</a>
+
 				{% endif %}
 		</div>
 		<span style="position:absolute;top:7px;left:10px;font-size:40px;cursor:pointer;color:#f3eadd;" onclick="openNav()">&#9776;</span>
@@ -68,7 +70,7 @@
 						data: {code:list[i]},
 						dataType: 'json',
 						success: function(result){
-							$('#noti').append(JSON.stringify(result));
+							$('#noti').append('<p>' + JSON.stringify(result) + '</p>');
 							// $('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
 						},
 						error: function(e) { console.log('error:'+e.status);}
@@ -77,10 +79,29 @@
 			}
 		}
 		function openNav() {
+            var x = document.getElementsByClassName('navList');
+        
+ 
+            var i;
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = 'block';
+                }
 			document.getElementById("mySidenav").style.width = "250px";
+            $('#notiCon').css('display','flex');
+            // alert($('#notiCon').innerHeight());
+            // var test = $('.sidenav').height()+ 60  - $('#notiCon').height()
+            $('#notiCon').css('height','512px');
+            $('#noti').css('margin-top','auto');
 		}
 		
 		function closeNav() {
+            var x = document.getElementsByClassName('navList');
+     
+            $('#notiCon').css('display','none');
+            var i;
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = 'none';
+                }
 			document.getElementById("mySidenav").style.width = "0";
 		}
 	</script>

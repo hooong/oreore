@@ -50,3 +50,18 @@
             .sidenav a {font-size: 18px;}
           }
           
+          .sidenav p{
+            margin:0px;
+            padding: 8px 8px 8px 32px;
+            
+          }
+          #noti {
+              padding:10px;
+          }
+          #noti > p{
+            color:#b4b8ba;
+            padding:3px;
+          }
+          #notiCon{
+              flex-direction: column;
+          }

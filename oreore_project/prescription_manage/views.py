@@ -38,6 +38,15 @@ def add_prescription(request):
     else:
         return render(request, 'add_prescription.html')
 
+def del_prescription(request, pre_id):
+    prescription = Prescription.objects.get(id=pre_id)
+
+    if request.user == prescription.ownUser:
+        prescription.delete()
+    
+    return redirect('all_prescription')
+
+
 def detail_prescription(request, pre_id):
     prescription = Prescription.objects.get(id=pre_id)
     diseases = Disease.objects.filter(linkPrescription=prescription)

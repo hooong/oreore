@@ -2,11 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 import requests
 import json ,re, os
 from bs4 import BeautifulSoup
+from prescription_manage.models import *
+from disease_manage.models import *
 from oreore_project.settings import BASE_DIR
 
 
 def index(request):
-
     sicknm = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
     pattern = re.compile('[가-힣]')
     m = pattern.match(sicknm)
@@ -49,9 +50,24 @@ def index(request):
 
     sick = zip(sickcds,sicknms)
 
-    return render(request, 'index.html', {
-        'sick':sick,
-    })
+    user = request.user
+    if user.is_authenticated:
+        prescriptions = Prescription.objects.filter(ownUser=request.user).order_by('-id')
+        
+        disease = []
+        for pre in prescriptions:
+            diseases = Disease.objects.filter(linkPrescription=pre)
+            for dis in diseases:
+                if not dis.kcdCode == '검색 내용 없음':
+                    disease.append(dis.kcdCode)
+
+        disease = list(set(disease))
+
+        context = {'sick':sick, 'disease':disease}
+    else:
+        context = {'sick':sick}
+
+    return render(request, 'index.html', context)
 
 def detail_search(request, code):
     disease = find_disease_detail(code)

@@ -96,32 +96,10 @@ def search_medi(request):
     if 'mediname' in request.POST:
         mediname = request.POST['mediname']
 
-    # 보험코드로 검색시
-    if code.match(mediname):
-        if mediname in medicines:
-            name = medicines[mediname]['name']
-            if 'img' in medicines[mediname]:
-                img = medicines[mediname]['img']
-            else:
-                img = ''
-            result = {'name':name,'code':mediname,'img':img}
-        else:
-            name,img = find_medicine(mediname)
-            result = {'name':name,'code':mediname,'img':img}
-
-            if not mediname in medicines:
-                medicine = dict()
-                medicine["name"] = name
-                medicine['img'] = img
-
-                medicines[mediname] = medicine
-                
-                os.remove(filename)
-                with open(filename, 'w', encoding='utf-8') as f:
-                    json.dump(medicines, f, indent=4)
     # 약 이름으로 검색                
-    else:
-        result = find_medicine_name(mediname)
+    result = find_medicine_name(mediname)
     
     return JsonResponse(result)
+
+
 

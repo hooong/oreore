@@ -97,8 +97,18 @@
 
 
 </div>
-<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
+ <!-- 삭제하기 버튼 수정바람. -->
+<button onclick="del_but();">삭제</button>
+<script>
+    function del_but(){
+        if (confirm("정말 삭제하시겠습니까?"))
+            window.location.href = '/prescription/delete/{{pre.id}}';
+        else
+            return false;
+    }
+</script>
 
+<div id="tail">Copyrightⓒ2019 by OREORE | Contact Us </div>
 <div style="width:100%;height:75px;"></div>
 <div id="menuContainer">
         <div id="menuAddButton" onclick="location.href='/disease/add/{{pre.id}}?q='">

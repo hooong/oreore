@@ -36,7 +36,18 @@ def add_prescription(request):
         add_pre.save()
         return redirect('/disease/add/' + str(add_pre.id) + '?q=')
     else:
-        return render(request, 'add_prescription.html')
+        prescriptions = Prescription.objects.filter(ownUser=request.user).order_by('-id')
+    
+        disease_pre = []
+        for pre in prescriptions:
+            diseases_pre = Disease.objects.filter(linkPrescription=pre)
+            for dis in diseases_pre:
+                if not dis.kcdCode == '검색 내용 없음':
+                    disease_pre.append(dis.kcdCode)
+
+        disease_pre = list(set(disease_pre))
+        
+        return render(request, 'add_prescription.html',{'disease':disease_pre})
 
 def del_prescription(request, pre_id):
     prescription = Prescription.objects.get(id=pre_id)
@@ -48,6 +59,17 @@ def del_prescription(request, pre_id):
 
 
 def detail_prescription(request, pre_id):
+    prescriptions = Prescription.objects.filter(ownUser=request.user).order_by('-id')
+    
+    disease_pre = []
+    for pre in prescriptions:
+        diseases_pre = Disease.objects.filter(linkPrescription=pre)
+        for dis in diseases_pre:
+            if not dis.kcdCode == '검색 내용 없음':
+                disease_pre.append(dis.kcdCode)
+
+    disease_pre = list(set(disease_pre))
+
     prescription = Prescription.objects.get(id=pre_id)
     diseases = Disease.objects.filter(linkPrescription=prescription)
     medi = Medicine.objects.filter(linkPrescription=prescription)
@@ -64,16 +86,26 @@ def detail_prescription(request, pre_id):
         
     diszip = zip(disease_list,range(30))
     context = {
-        
         'medi':medi,
         'pre':prescription,
         'diszip':diszip,
+        'disease':disease_pre
     }
 
     return render(request, 'detail_prescription.html', context)
 
 def mod_medicine_view(request, code, pre_id):
-    context = {'code':code, 'pre_id':pre_id}
+    prescriptions = Prescription.objects.filter(ownUser=request.user).order_by('-id')
+    
+    disease_pre = []
+    for pre in prescriptions:
+        diseases_pre = Disease.objects.filter(linkPrescription=pre)
+        for dis in diseases_pre:
+            if not dis.kcdCode == '검색 내용 없음':
+                disease_pre.append(dis.kcdCode)
+
+    disease_pre = list(set(disease_pre))
+    context = {'code':code, 'pre_id':pre_id, 'disease':disease_pre}
 
     return render(request, "mod_medicine.html", context)
 

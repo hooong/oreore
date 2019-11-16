@@ -24,6 +24,12 @@
 	<div class="mainContainer">
 		<div id="mySidenav" class="sidenav">
 				{% if user.is_authenticated %}
+				<!-- noti_predict -->
+				<script type="text/javascript">
+					$(document).ready(function() {
+						noti();
+					});
+				</script>
 				<p>현재 유저 : {{user.uid}}</p>
 				<!-- noti -->
 				<div id="noti">

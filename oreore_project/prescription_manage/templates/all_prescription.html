@@ -18,12 +18,6 @@
 			<div id="myTitle">내 처방전</div>
 		</div>
 		<hr>
-		
-		
-		<!-- noti -->
-		<div id="noti">
-			<input type="hidden" id='kcd' value='{{disease}}'>
-		</div>
 
 		<form class="test" action="{% url 'add_prescription' %}" method="POST">
 				{% csrf_token %}
@@ -31,7 +25,7 @@
 			
 				<button type="submit">확인</button>
 			</form>
-		{% if prescription %}
+		{% if prescriptions %}
 			{% for prescription in prescriptions %}
 
 			<div class="prescriptionList">
@@ -65,29 +59,6 @@
 </body>
 </html>
 <script>
-	// noti
-	function noti(){
-		var kcdcodes = $("#kcd").val();
-		var list = kcdcodes.match(/\w+/g);
-		for (i in list){
-			if (list[i]=="J00" || list[i]=="B301"){
-				$.ajax({
-					type: 'POST',
-					url: '/disease_noti/noti/',
-					data: {code:list[i]},
-					dataType: 'json',
-					success: function(result){
-						// alert(JSON.stringify(result));
-						notify(JSON.stringify(result));
-						// $('#noti').append(JSON.stringify(result));
-						// $('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
-					},
-					error: function(e) { console.log('error:'+e.status);}
-				});
-			}
-		}
-	}
-	
 	function openadd(){
 		$('.prescriptionList').toggle(300);
 		$('.test').toggle(300);

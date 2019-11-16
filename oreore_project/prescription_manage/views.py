@@ -38,6 +38,7 @@ def add_prescription(request):
     else:
         return render(request, 'add_prescription.html')
 
+
 def detail_prescription(request, pre_id):
     prescription = Prescription.objects.get(id=pre_id)
     diseases = Disease.objects.filter(linkPrescription=prescription)

@@ -21,10 +21,15 @@
     <link rel="stylesheet" href="{% static 'oreore_project/base.css' %}" />
 </head>
 <body>
-<div class="mainContainer">
+	<div class="mainContainer">
 		<div id="mySidenav" class="sidenav">
 				{% if user.is_authenticated %}
 				<p>현재 유저 : {{user.uid}}</p>
+				<!-- noti -->
+				<div id="noti">
+					<p>당신이 걸릴수도 있는 병!</p>
+					<input type="hidden" id='kcd' value='{{disease}}'>
+				</div>
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 				<a href="/">Home</a>
 				<a href="{% url 'all_prescription' %}">Prescription</a>
@@ -41,22 +46,42 @@
 				<a href="/">Search</a>
 				<a href="/contact">Contact</a>
 				{% endif %}
-			  </div>
-			  <span style="position:absolute;top:7px;left:10px;font-size:40px;cursor:pointer;color:#f3eadd;" onclick="openNav()">&#9776;</span>
-			  
+		</div>
+		<span style="position:absolute;top:7px;left:10px;font-size:40px;cursor:pointer;color:#f3eadd;" onclick="openNav()">&#9776;</span>
 
-
-    <h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
+    	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
     
-            {% block contents %}
-            {% endblock %}
-            <script>
-					function openNav() {
-					  document.getElementById("mySidenav").style.width = "250px";
-					}
-					
-					function closeNav() {
-					  document.getElementById("mySidenav").style.width = "0";
-					}
-                    </script>
-                    </html>
+	{% block contents %}
+
+	{% endblock %}
+			
+	<script>
+		// noti
+		function noti(){
+			var kcdcodes = $("#kcd").val();
+			var list = kcdcodes.match(/\w+/g);
+			for (i in list){
+				if (list[i]=="J00" || list[i]=="B301"){
+					$.ajax({
+						type: 'POST',
+						url: '/disease_noti/noti/',
+						data: {code:list[i]},
+						dataType: 'json',
+						success: function(result){
+							$('#noti').append(JSON.stringify(result));
+							// $('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
+						},
+						error: function(e) { console.log('error:'+e.status);}
+					});
+				}
+			}
+		}
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+		}
+		
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+	</script>
+</html>

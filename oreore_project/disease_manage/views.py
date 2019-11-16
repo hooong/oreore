@@ -6,6 +6,17 @@ from .models import *
 from prescription_manage.models import *
 
 def add_disease(request, pre_id):
+    prescriptions = Prescription.objects.filter(ownUser=request.user).order_by('-id')
+    
+    disease_pre = []
+    for pre in prescriptions:
+        diseases_pre = Disease.objects.filter(linkPrescription=pre)
+        for dis in diseases_pre:
+            if not dis.kcdCode == '검색 내용 없음':
+                disease_pre.append(dis.kcdCode)
+
+    disease_pre = list(set(disease_pre))
+
     sicknm = request.GET.get('q', '') # GET request의 인자중에 q 값이 있으면 가져오고, 없으면 빈 문자열 넣기
     pattern = re.compile('[가-힣]')
     m = pattern.match(sicknm)
@@ -51,7 +62,8 @@ def add_disease(request, pre_id):
     sick = zip(sickcds,sicknms)
     return render(request, 'add_disease.html', {
         'sick':sick,
-        'pre_id':pre_id
+        'pre_id':pre_id,
+        'disease':disease_pre,
     })
 
 def add_disease_to_prescription(request, pre_id, code, name):

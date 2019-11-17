@@ -39,7 +39,7 @@
                         
                         {%if disease %}
                         <p class="navList" >Caution</p>
-                        <input  type="hidden" id='kcd' value='{{disease}}'>
+                        <input type="hidden" id='kcd' value='{{disease}}'>
                         {%endif%}
                 </div>
                 </div>
@@ -58,6 +58,9 @@
 	{% endblock %}
 			
 	<script>
+		$(document).ready(function() {
+        	noti();
+		});		
 		// noti
 		function noti(){
 			var kcdcodes = $("#kcd").val();

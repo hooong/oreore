@@ -158,13 +158,13 @@
 }
 
 
-.searchListButton a:visited{
-    color:white;
+.prescriptionList a:visited{
+    color:rgb(45, 48, 51);;
       text-decoration: none;
 
   }
-.searchListButton a:link{
-      color:white;
+.prescriptionList a:link{
+      color:rgb(45, 48, 51);;
       text-decoration : none;
   }
 

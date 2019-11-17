@@ -16,7 +16,7 @@
                 <h1 style="font-size: 5.5vw">{{pre.createdDate|date:"Y년 m월 d일"}} 처방 이력</h1>
 {{pre.prescriptionName}} <br>
 <div style="text-align: left; margin:10px;">
-        <i style="color:#b4b8ba;"class="fas fa-stethoscope fa-2x"></i>
+        <!-- <i style="color:#b4b8ba;"class="fas fa-stethoscope fa-2x"></i> -->
         <div style="width:42px; text-align:center; position:relative;font-size:8pt;background-color:#b4b8ba">
             질병 정보
         </div>
@@ -39,7 +39,7 @@
         {% endfor %}
 
 <div style="text-align: left; margin:10px;">
-        <i style="color:#b4b8ba;"class="fas fa-pills fa-2x"></i>
+        <!-- <i style="color:#b4b8ba;"class="fas fa-pills fa-2x"></i> -->
         <div style="width:42px; text-align:center; position:relative;font-size:8pt;background-color:#b4b8ba">
             약정보
         </div>
@@ -67,20 +67,57 @@
     {% else %}
         <img src="{{medicine.img_url}}" alt="Not image" width="90%">
     {%endif%}
-        <div style="font-size:10px;color:gray;margin-top:-15px;margin-bottom: 10px">
+        <div style="font-size:10px;color:gray;margin-top:-20px;margin-bottom: 10px">
             ({{medicine.insuranceCode}})
         </div>
     {% if medicine.mediName == ''%}
         <div style="display:inline-block;padding:5px; border-radius: 3px;"><a href="{% url 'mod_medicine_view' code=medicine.insuranceCode pre_id=pre.id %}" rel="modal:open"><i style="color:rgb(45, 48, 51);" class="far fa-edit"></i></a></div>
     {% else %}
+    <!-- <div style="text-align:center;">
         <div style="font-size:10pt;margin:10pt">{{medicine.mediName}}</div>
-        <div style="font-size:10pt;margin:10pt">{{medicine.class_name}}</div>
-        <div style="font-size:10pt;margin:10pt">{{medicine.entp}}</div>
-        <p>용법용량</p>
-        <div style="font-size:10pt;margin:10pt"><a href="{{medicine.dosage}}">확인</a></div>
-        <p>주의사항</p>
-        <div style="font-size:10pt;margin:10pt"><a href="{{medicine.caution}}">확인</a></div>
-        
+        <div style="font-size:10pt;margin:10pt">분류 : {{medicine.class_name}}</div>  
+        <div style="font-size:10pt;margin:10pt">용법용량</div>
+        <div style="font-size:10pt;margin:10pt"><a href="{{medicine.dosage}}">?</a></div>
+        <div style="font-size:10pt;margin:10pt">주의사항</div>
+        <div style="font-size:10pt;margin:10pt"><a href="{{medicine.caution}}">?</a></div>
+        <div style="font-size:10pt;margin:10pt">제조 : {{medicine.entp}}</div>
+    </div> -->
+    <style>
+    table{font-size:10pt;text-align:left; border-collapse: collapse;margin:5px;}
+    td > a:link,td > a:visited{color:rgb(45, 48, 51);text-decoration: none}
+    tr td:first-child{min-width:50px;vertical-align: text-top;text-align: center;}
+    tr td:nth-child(2){width:100%;}
+
+    tr:nth-of-type(2n-1){background-color:#dad3cc;}
+    </style>
+    <table>
+        <tr>
+            <td>명칭</td>
+            <td>{{medicine.mediName}}</td>
+        </tr>
+        <tr>
+            <td>분류</td>
+            <td>{{medicine.class_name}}</td>
+        </tr>
+        <tr>
+            <td>제조</td>
+            <td>{{medicine.entp}}</td>
+        </tr>
+        <tr>
+                <td><i class="fas fa-prescription-bottle"></i></td>
+                <td><a href="{{medicine.dosage}}">용법 용량 ></a></td>
+        </tr>
+        <tr>
+                <td><i class="fas fa-book-medical"></i></td>
+                <td><a href="{{medicine.caution}}">주의 사항 ></a></td>
+        </tr>
+    </table>
+    <!-- <div style="display:flex;justify-content: center;">
+    <div style="font-size:10pt;margin:10pt">용법용량</div>
+    <div style="font-size:10pt;margin:10pt"><i class="fas fa-prescription-bottle"></i>&nbsp;<a href="{{medicine.dosage}}">용법용량</a></div>
+    <div style="font-size:10pt;margin:10pt">주의사항</div>
+    <div style="font-size:11pt;margin:10pt;vertical-align: text-top;"><i class="fas fa-book-medical"></i>&nbsp;<a href="{{medicine.caution}}">주의사항</a></div> -->
+<!-- </div> -->
     {% endif %}
         <hr style="width:90%;border: 0.5px solid rgb(204, 204, 204)">
 </div>
@@ -102,10 +139,10 @@
         
     </div>
 
-
+    <button style="color:white;"onclick="del_but();">삭제</button>
 </div>
  <!-- 삭제하기 버튼 수정바람. -->
-<button onclick="del_but();">삭제</button>
+
 <script>
     function del_but(){
         if (confirm("정말 삭제하시겠습니까?"))

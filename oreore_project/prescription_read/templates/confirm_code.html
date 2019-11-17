@@ -131,7 +131,7 @@
 	<h1 style="font-family: 'S-CoreDream-8Heavy'; color:#f3eadd">OREORE</h1>
 	<div class="main">
         <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<img style="width:100%"src="{{img.pre_img.url}}">
+<img id="imgs" style="width:100%"src="{{img.pre_img.url}}">
 <div style="color:gray;font-size:10pt;">위의 이미지와 상이한 정보가 있으면 수정해주세요!</div>
 <form id="frm" style="text-align:center;" action="{% url 'confirm_code' pre_id %}" method='POST'>
     {% csrf_token %}
@@ -182,7 +182,13 @@
     }
 
     // 코드 input 추가 및 삭제
-    $(document).ready (function () {                
+    $(document).ready (function () {     
+        if ($('#imgs').height() < $('img').width()){
+            $('#imgs').css('transform','rotate( 90deg )');
+            $('#imgs').css('height',$('img').width());
+            $('#imgs').css('width',$('img').height());
+            
+        }     
         $('.btnAdd').click (function () {                                        
             $('.addInput').append (                        
                 '<div class="addInputArea"><div class="inputArea"><input class="inputStyle" type="type" name="iscode" value=""></div>\

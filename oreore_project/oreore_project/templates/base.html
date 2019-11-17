@@ -67,15 +67,37 @@
 			var kcdcodes = $("#kcd").val();
 			var list = kcdcodes.match(/\w+/g);
 			for (i in list){
-				if (list[i]=="J00" || list[i]=="B301"){
+				if (list[i]=="J00"){
 					$.ajax({
 						type: 'POST',
 						url: '/disease_noti/noti/',
 						data: {code:list[i]},
 						dataType: 'json',
 						success: function(result){
-							$('#noti').append('<p>' + JSON.stringify(result) + '</p>');
-							// $('#noti').html('<p>'+kcdcode+'많이 걸리는 달'+'</p>'+result['noti']['J00']);
+							// $('#noti').append('<p>' +  + '</p>');
+							var now = new Date();
+							
+									//result['noti']['J00']+
+								$('#noti').append('<p style="">'+ (now.getMonth()+1)+'월은 J00(감기) 로 인한 내원빈도가 높은 달입니다! '+'<b style="">{{user.uid}}</b>' + '님은 J00(감기) 이력이 있으므로 주의하세요');
+								
+			
+							// $('#noti').html('<p>'+lists+'<br>'+result['noti']['J00']+'</p>');
+						},
+						error: function(e) { console.log('error:'+e.status);}
+					});
+				}
+				else if (list[i]=="B301"){
+					$.ajax({
+						type: 'POST',
+						url: '/disease_noti/noti/',
+						data: {code:list[i]},
+						dataType: 'json',
+						success: function(result){
+							// $('#noti').append('<p>' +  + '</p>');
+							var now = new Date();
+							$('#noti').append('<p style="">'+ (now.getMonth()+1)+'월은 B301(아데노바이러스에 의한 결막염) 로 인한 내원빈도가 높은 달입니다! '+'<b style="">{{user.uid}}</b>' + '님은 B301(아데노바이러스에 의한 결막염) 이력이 있으므로 주의하세요');
+								
+							// $('#noti').html('<p>'+lists+'<br>'+result['noti']['J00']+'</p>');
 						},
 						error: function(e) { console.log('error:'+e.status);}
 					});

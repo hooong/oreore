@@ -70,5 +70,13 @@
         "class_name": "\uc9c4\ud574\uac70\ub2f4\uc81c",
         "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/199801158/UD",
         "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/199801158/NB"
+    },
+    "661201680": {
+        "name": "",
+        "img": "",
+        "entp": "",
+        "class_name": "",
+        "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/200302217/UD",
+        "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/200302217/NB"
     }
 }

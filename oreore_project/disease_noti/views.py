@@ -41,7 +41,7 @@ def predict_month(request):
     predict_mon = {}
     predict_mon['noti'] = {}
     for mon, data in data_mon_avg:
-        if data >= 50:
+        if data >= 60:
             if kcdcode in predict_mon['noti']:
                 predict_mon['noti'][kcdcode] = predict_mon['noti'][kcdcode] + ',' +str(mon) + '월'
             else:

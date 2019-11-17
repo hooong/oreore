@@ -22,5 +22,53 @@
         "class_name": "\uace8\uaca9\uadfc\uc774\uc644\uc81c",
         "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/201310292/UD",
         "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/201310292/NB"
+    },
+    "642102570": {
+        "name": "\ud398\ub2c8\ub77c\ubbfc\uc815(\ud074\ub85c\ub974\ud398\ub2c8\ub77c\ubbfc\ub9d0\ub808\uc0b0\uc5fc)",
+        "img": "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/148609556259100153",
+        "entp": "(\uc8fc)\uc720\ud55c\uc591\ud589",
+        "class_name": "\ud56d\ud788\uc2a4\ud0c0\ubbfc\uc81c",
+        "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/196000011/UD",
+        "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/196000011/NB"
+    },
+    "658200600": {
+        "name": "",
+        "img": "",
+        "entp": "",
+        "class_name": "",
+        "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/200302217/UD",
+        "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/200302217/NB"
+    },
+    "642102282": {
+        "name": "",
+        "img": "",
+        "entp": "",
+        "class_name": "",
+        "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/200302217/UD",
+        "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/200302217/NB"
+    },
+    "651201680": {
+        "name": "\ud06c\ub77c\ubaa9\uc2a4\uc815375\ubc00\ub9ac\uadf8\ub78c(\uc544\ubaa9\uc2dc\uc2e4\ub9b0\uc218\ud654\ubb3c,\ud76c\uc11d\ud074\ub77c\ubd88\ub780\uc0b0\uce7c\ub968(2:1))",
+        "img": "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/147427970624300198",
+        "entp": "\uc0bc\ucc9c\ub2f9\uc81c\uc57d(\uc8fc)",
+        "class_name": "\uc8fc\ub85c \uadf8\ub78c\uc591\uc131, \uc74c\uc131\uade0\uc5d0 \uc791\uc6a9\ud558\ub294 \uac83",
+        "dosage": "",
+        "caution": ""
+    },
+    "670301800": {
+        "name": "\ud2b8\ub77c\ubab08\uc2dc\uac04\uc11c\ubc29\uc815650\ubc00\ub9ac\uadf8\ub78c(\uc544\uc138\ud2b8\uc544\ubbf8\ub178\ud39c)",
+        "img": "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/1MksuF0DWvZ",
+        "entp": "\ucf54\uc624\ub871\uc81c\uc57d(\uc8fc)",
+        "class_name": "\ud574\uc5f4.\uc9c4\ud1b5.\uc18c\uc5fc\uc81c",
+        "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/199800767/UD",
+        "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/199800767/NB"
+    },
+    "658200500": {
+        "name": "\ubba4\ucf54\ub9ac\ub4dc\uce85\uc140200mg(\uc544\uc138\ud2f8\uc2dc\uc2a4\ud14c\uc778)(\uc218\ucd9c\uba85:\uc544\uc2dc\uc2a4\ud14c\uc778\uce85\uc140)",
+        "img": "https://nedrug.mfds.go.kr/pbp/cmn/itemImageDownload/151335249722200035",
+        "entp": "\uc774\ub2c8\uc2a4\ud2b8\ubc14\uc774\uc624\uc81c\uc57d(\uc8fc)",
+        "class_name": "\uc9c4\ud574\uac70\ub2f4\uc81c",
+        "dosage": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/199801158/UD",
+        "caution": "https://nedrug.mfds.go.kr/pbp/cmn/pdfViewer/199801158/NB"
     }
 }

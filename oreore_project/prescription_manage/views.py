@@ -46,7 +46,7 @@ def add_prescription(request):
                     disease_pre.append(dis.kcdCode)
 
         disease_pre = list(set(disease_pre))
-        
+
         return render(request, 'add_prescription.html',{'disease':disease_pre})
 
 def del_prescription(request, pre_id):
@@ -142,9 +142,9 @@ def find_disease_detail(disease):
         diseases = json.load(f)
 
     code = disease.kcdCode
-    disease_dict = {'dname_kor':disease.diesName, 'kcdcode':disease.kcdCode, 'category':'',
-                    'dname_eng':'', 'definition':'', 'cause':'', 'symptom':'',
-                    'treatment':'', 'etc':'', 'lifestyle':''}
+    disease_dict = {'dname_kor':disease.diesName, 'kcdcode':disease.kcdCode, 'category':'정보 추가를 기다리는 중...',
+                    'dname_eng':'정보 추가를 기다리는 중...', 'definition':'정보 추가를 기다리는 중...', 'cause':'정보 추가를 기다리는 중...', 'symptom':'정보 추가를 기다리는 중...',
+                    'treatment':'정보 추가를 기다리는 중...', 'etc':'정보 추가를 기다리는 중...', 'lifestyle':'정보 추가를 기다리는 중...'}
     
     if code in diseases:
         disease_dict = paste_detail(diseases,disease_dict,code)

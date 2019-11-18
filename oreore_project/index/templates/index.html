@@ -137,11 +137,14 @@ if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복
 					
 					if(n==0){
 					$('#info_medi').html('<div><img style="width:90%" src=' + result[n]['img'] + '><div>');
-					$('#info_medi').append(result[n]['name']);
+					$('#info_medi').append('<div style="font-size:10pt;display:flex;justify-content:center;"><div style="width:90%">'+result[n]['name']+'</div></div>');
+					$('#info_medi').append('<hr style="width:90%;border: 0.5px solid rgb(204, 204, 204)">');
 					}else{
 					$('#info_medi').append('<div><img style="width:90%" src=' + result[n]['img'] + '><div>');
-					$('#info_medi').append(result[n]['name']);
-					}
+					$('#info_medi').append('<div style="width:90%;font-size:10pt;text-align:center;">'+result[n]['name']+'</div>');
+					$('#info_medi').append('<hr style="width:90%;border: 0.5px solid rgb(204, 204, 204)">');
+
+				}
 				}
 				// var searchMedi = 1;
 				

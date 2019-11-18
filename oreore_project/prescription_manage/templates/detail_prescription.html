@@ -84,13 +84,13 @@
         <div style="font-size:10pt;margin:10pt">제조 : {{medicine.entp}}</div>
     </div> -->
     <style>
-    table{font-size:10pt;text-align:left; border-collapse: collapse;margin:5px;}
+    table{font-size:10pt;text-align:left; border-collapse: collapse;margin:5px;width:90%;}
     td > a:link,td > a:visited{color:rgb(45, 48, 51);text-decoration: none}
     tr td:first-child{min-width:50px;vertical-align: text-top;text-align: center;}
     tr td:nth-child(2){width:100%;}
 
     tr:nth-of-type(2n-1){background-color:#dad3cc;}
-    </style>
+    </style><div style="display:flex;justify-content: center;">
     <table>
         <tr>
             <td>명칭</td>
@@ -112,7 +112,7 @@
                 <td><i class="fas fa-book-medical"></i></td>
                 <td><a href="{{medicine.caution}}">주의 사항 ></a></td>
         </tr>
-    </table>
+    </table></div>
     <!-- <div style="display:flex;justify-content: center;">
     <div style="font-size:10pt;margin:10pt">용법용량</div>
     <div style="font-size:10pt;margin:10pt"><i class="fas fa-prescription-bottle"></i>&nbsp;<a href="{{medicine.dosage}}">용법용량</a></div>

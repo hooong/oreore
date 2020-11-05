@@ -29,7 +29,7 @@
 
 ### 프로젝트 참여 인원
 
-- pannchat (박지) - Front End
+- pannchat (박지원) - Front End
 - hooong (홍석준) - Back End
 - junstone1995 (이준석) - Back End
 
